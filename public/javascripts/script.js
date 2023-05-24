@@ -47,3 +47,6 @@ function contar(obj){//descobre quantos objetos com a mesma flag tem em jogo
 	}
     return countObj;
 }
+/*********************************************************************************************************/
+//inserir player
+sprites.push(new Sprite('images/pacman.png', 'player', 488, 144, 14, 14, 0, 0));
