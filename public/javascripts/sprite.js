@@ -38,7 +38,31 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
             this.posY += this.speed;
         }else{
 			
-        }        
+        }
+		/**********************************************************************************/
+		//parede
+		if (this.flag == 'parede') {
+			bloqueando(sprites[encontrar('player')], this);
+		}
+		if (this.flag == 'ajuste' && colide(this, sprites[encontrar('player')])) {
+			
+			if (!sprites[encontrar('player')].movLeft && !sprites[encontrar('player')].movRight && !sprites[encontrar('player')].movDown && !sprites[encontrar('player')].movUp) {
+				//console.log('tocou ajuste parado'+ sprites[encontrar('player')].meiox() +' : '+ this.meiox());
+				if (sprites[encontrar('player')].meiox() < this.meiox()) {
+					sprites[encontrar('player')].posX++;
+				}
+				if (sprites[encontrar('player')].meiox() > this.meiox()) {
+					sprites[encontrar('player')].posX--;
+				}
+				//
+				if (sprites[encontrar('player')].meioy() < this.meioy()) {
+					sprites[encontrar('player')].posY++;
+				}
+				if (sprites[encontrar('player')].meioy() > this.meioy()) {
+					sprites[encontrar('player')].posY--;
+				}
+			}
+		}
     }
 }
 Sprite.prototype.metax = function(){
