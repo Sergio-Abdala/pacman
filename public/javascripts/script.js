@@ -61,6 +61,11 @@ sprites.push(new Sprite('images/pacman.png', 'parede', 312, 20, 56, 8, 84, 20));
 sprites.push(new Sprite('images/pacman.png', 'parede', 408, 20, 24, 8, 180, 20));
 sprites.push(new Sprite('images/pacman.png', 'parede', 448, 0, 4, 48, 220, 0));
 sprites.push(new Sprite('images/pacman.png', 'parede', 432, 44, 20, 16, 204, 44));
+sprites.push(new Sprite('images/pacman.png', 'parede', 288, 44, 32, 16, 60, 44));
+sprites.push(new Sprite('images/pacman.png', 'parede', 336, 44, 8, 40, 108, 44));
+sprites.push(new Sprite('images/pacman.png', 'parede', 360, 44, 32, 16, 132, 44));
+sprites.push(new Sprite('images/pacman.png', 'parede', 408, 44, 8, 40, 180, 44));
+sprites.push(new Sprite('images/pacman.png', 'parede', 228, 76, 20, 56, 0, 76));
 //ajustar personagem / player aos corredores do laberinto
 sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 9, 9));
 sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 48, 9));
