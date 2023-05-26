@@ -6,6 +6,7 @@ var sprites = new Array();
 var GLOBAIS = {
     vida: 3,
     pontos: 0,
+	somar: 0,
 	pause: false,
 	gameOver: false,
 	txt: "SCORE : ",
@@ -181,22 +182,27 @@ sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 234)
 sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 168, 234));
 sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 210, 234));
 
-fruta(6,130,181);
+
 cnv.width = 450;
 cnv.height = 248;
 //inserir player
-sprites.push(new Sprite('images/pacman.png', 'player', 488, 144, 14, 14, 104, 181));
+sprites.push(new Sprite('images/pacmanTransparente.png', 'player', 488, 144, 14, 14, 104, 181));
 
 sprites[encontrar('player')].img.onload = function(){
 	GLOBAIS.pause = true;
     loop();
 }
+fruta(6,130,181);
+fruta(3,150,181);
 /********************************************************************************************/
+function grao(x,y){
+	sprites.push(new Sprite('images/pacmanTransparente.png', 'grao', 210, 218, 1, 1, x, y));
+}
 function fruta(ps, x, y) {//srcY + alt = spritesheet pontos
 	let lar = 16;
 	let alt = 16;
 	let srcX = 504 + lar*ps;
 	let srcY = 1;// + alt*tp;
 	
-	sprites.push(new Sprite('images/pacman.png', 'fruta', srcX, srcY, lar, alt, x, y));
+	sprites.push(new Sprite('images/pacmanTransparente.png', 'fruta', srcX, srcY, lar, alt, x, y));
 }

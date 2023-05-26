@@ -99,12 +99,51 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			if (this.posX < cnv.width/2+20) {
 				this.posX++;
 			}
+			if (this.posX > cnv.width/2+20) {
+				this.posX--;
+			}
 			if (this.posY < cnv.height/2-16) {
 				this.posY++;
 			}
 			if (this.posY > cnv.height/2-16) {
 				this.posY--;
 			}
+			if (this.posX == cnv.width/2+20 && this.posY == cnv.height/2-16){
+				this.flag = 'remover';
+				//quantos pontos
+				if (this.srcX == 504) {
+					//100 pontos
+					GLOBAIS.somar += 100;
+				}
+				if (this.srcX == 520) {
+					//100 pontos
+					GLOBAIS.somar += 200;
+				}
+				if (this.srcX == 536) {
+					//100 pontos
+					GLOBAIS.somar += 500;
+				}
+				if (this.srcX == 552) {
+					//100 pontos
+					GLOBAIS.somar += 700;
+				}
+				if (this.srcX == 568) {
+					//100 pontos
+					GLOBAIS.somar += 1000;
+				}
+				if (this.srcX == 584) {
+					//100 pontos
+					GLOBAIS.somar += 2000;
+				}
+				if (this.srcX == 600) {
+					//100 pontos
+					GLOBAIS.somar += 5000;
+				}
+			}
+		}
+		if (GLOBAIS.somar) {
+			GLOBAIS.pontos++;
+			GLOBAIS.somar--;
 		}
     }
 }
