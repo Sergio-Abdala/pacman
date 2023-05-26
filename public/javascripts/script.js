@@ -6,6 +6,8 @@ var sprites = new Array();
 var GLOBAIS = {
     vida: 3,
     pontos: 0,
+	pause: false,
+	gameOver: false,
 	contLoop: 0
 }
 
@@ -16,9 +18,9 @@ function loop(){
 	ctx.clearRect(0,0,cnv.width,cnv.height);
 	for (let i = 0 ; i < sprites.length; i++) {//percorre array de sprites
 
-		//if (!pause && !gameOver) {/////////////
+		if (!GLOBAIS.pause && !GLOBAIS.gameOver) {/////////////
 			sprites[i].exe();/////////////////  movimento do jogo...            
-		//}////////////////////////////////////
+		}////////////////////////////////////
 		sprites[i].render();/////////////// renderiza na tela...
 	}    
     ctx.font = "10px Arial";//  TEXTO...
@@ -171,7 +173,7 @@ sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 210, 234)
 
 
 //inserir player
-sprites.push(new Sprite('images/pacman.png', 'player', 488, 144, 14, 14, 0, 4));
+sprites.push(new Sprite('images/pacman.png', 'player', 488, 144, 14, 14, 106, 181));
 cnv.width = 450;
 cnv.height = 248;
 

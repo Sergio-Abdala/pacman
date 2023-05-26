@@ -40,14 +40,40 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			
         }
 		/**********************************************************************************/
+		//animação do player...............................................................
+		if (this.flag == 'player') {
+			if (!(GLOBAIS.contLoop % 10)) {//frequencia na mudança do sprite
+				if (this.movRight) {
+					this.srcY = 144;					
+				}
+				if (this.movLeft) {
+					this.srcY = 160;
+				}
+				if (this.movUp) {
+					this.srcY = 178;	
+				}
+				if (this.movDown) {
+					this.srcY = 192;	
+				}
+				//animação
+				if (this.srcX == 472) {
+					this.srcX = 456;
+				}else{
+					this.srcX = 472;
+				}
+			}
+		}
 		//parede
 		if (this.flag == 'parede') {
 			bloqueando(sprites[encontrar('player')], this);
 		}
+		//ajuste
 		if (this.flag == 'ajuste' && colide(this, sprites[encontrar('player')])) {
 			
 			if (!sprites[encontrar('player')].movLeft && !sprites[encontrar('player')].movRight && !sprites[encontrar('player')].movDown && !sprites[encontrar('player')].movUp) {
 				//console.log('tocou ajuste parado'+ sprites[encontrar('player')].meiox() +' : '+ this.meiox());
+				/*sprites[encontrar('player')].srcX = 488;
+				sprites[encontrar('player')].srcY = 144;*/
 				if (sprites[encontrar('player')].meiox() < this.meiox()) {
 					sprites[encontrar('player')].posX++;
 				}
