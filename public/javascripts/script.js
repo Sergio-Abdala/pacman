@@ -5,14 +5,8 @@ var sprites = new Array();
 
 var GLOBAIS = {
     vida: 3,
-    pontos: 0
-}
-//inserir player
-sprites.push(new Sprite('images/pacman.png', 'player', 488, 144, 14, 14, 0, 4));
-cnv.height = 248;
-
-sprites[encontrar('player')].img.onload = function(){
-    loop();
+    pontos: 0,
+	contLoop: 0
 }
 
 //************************************************************************************************ */
@@ -28,7 +22,8 @@ function loop(){
 		sprites[i].render();/////////////// renderiza na tela...
 	}    
     ctx.font = "10px Arial";//  TEXTO...
-    ctx.fillText("texto... ", cnv.width/4, cnv.height/2);
+    //ctx.fillText("texto... ", cnv.width/4, cnv.height/2);
+	GLOBAIS.contLoop++;
 	requestAnimationFrame(loop, "canvas");
 }
 function encontrar(flag){//descobre index do objeto que corresponda a flag com maior index do array
@@ -96,80 +91,90 @@ sprites.push(new Sprite('images/pacman.png', 'parede', 288, 196, 8, 32, 60, 196)
 sprites.push(new Sprite('images/pacman.png', 'parede', 360, 196, 32, 8, 132, 196));
 sprites.push(new Sprite('images/pacman.png', 'parede', 384, 196, 8, 32, 156, 196));
 sprites.push(new Sprite('images/pacman.png', 'parede', 228, 244, 224, 4, 0, 244));
-//ajustar personagem / player aos corredores do laberinto
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 9, 9));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 48, 9));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 72, 9));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 144, 9));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 170, 9));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 210, 9));
+//ajustar personagem / player aos corredores do laberinto mini pacman = srcX, srcY = 500, 200,
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 9, 9));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 9));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 72, 9));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 9));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 170, 9));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 210, 9));
 
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 9, 33));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 25, 33));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 48, 33));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 72, 33));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 96, 33));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 120, 33));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 144, 33));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 170, 33));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 192, 33));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 210, 33));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 9, 33));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 25, 33));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 33));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 72, 33));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 96, 33));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 120, 33));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 33));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 170, 33));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 192, 33));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 210, 33));
 
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 24, 64));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 48, 64));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 74, 64));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 96, 64));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 120, 64));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 144, 64));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 168, 64));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 192, 64));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 24, 64));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 64));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 64));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 96, 64));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 120, 64));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 64));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 168, 64));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 192, 64));
 
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 24, 90));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 74, 90));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 144, 90));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 192, 90));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 24, 90));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 90));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 90));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 192, 90));
 
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 48, 114));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 74, 114));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 144, 114));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 168, 114));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 114));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 114));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 114));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 168, 114));
 
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 24, 138));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 48, 138));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 74, 138));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 96, 138));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 120, 138));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 144, 138));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 168, 138));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 192, 138));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 24, 138));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 138));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 138));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 96, 138));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 120, 138));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 138));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 168, 138));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 192, 138));
 
 
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 24, 162));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 74, 162));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 96, 162));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 120, 162));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 144, 162));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 192, 162));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 24, 162));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 162));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 96, 162));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 120, 162));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 162));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 192, 162));
 
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 9, 185));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 24, 185));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 48, 185));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 74, 185));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 96, 185));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 120, 185));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 144, 185));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 168, 185));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 192, 185));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 210, 185));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 9, 185));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 24, 185));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 185));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 185));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 96, 185));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 120, 185));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 185));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 168, 185));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 192, 185));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 210, 185));
 
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 74, 210));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 96, 210));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 120, 210));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 144, 210));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 210));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 96, 210));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 120, 210));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 210));
 
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 9, 234));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 48, 234));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 74, 234));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 144, 234));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 168, 234));
-sprites.push(new Sprite('images/pacman.png', 'ajuste', 509, 200, 7, 7, 210, 234));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 9, 234));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 234));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 234));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 234));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 168, 234));
+sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 210, 234));
+
+
+//inserir player
+sprites.push(new Sprite('images/pacman.png', 'player', 488, 144, 14, 14, 0, 4));
+cnv.width = 450;
+cnv.height = 248;
+
+sprites[encontrar('player')].img.onload = function(){
+    loop();
+}
