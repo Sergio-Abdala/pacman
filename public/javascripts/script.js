@@ -8,6 +8,7 @@ var GLOBAIS = {
     pontos: 0,
 	pause: false,
 	gameOver: false,
+	txt: "SCORE : ",
 	contLoop: 0
 }
 
@@ -22,9 +23,18 @@ function loop(){
 			sprites[i].exe();/////////////////  movimento do jogo...            
 		}////////////////////////////////////
 		sprites[i].render();/////////////// renderiza na tela...
-	}    
-    ctx.font = "10px Arial";//  TEXTO...
-    //ctx.fillText("texto... ", cnv.width/4, cnv.height/2);
+	}
+	//for secundario para remover obj depois de renderizar
+    for (let k = 0 ; k < sprites.length; k++) {//percorre array de sprites
+        
+        if (sprites[k].flag == 'remover') {
+            sprites.splice(k, 1);//eliminar do array
+        }
+    }
+	//GLOBAIS.txt = "texto... ";
+    ctx.font = "15px Arial";//  TEXTO...
+	ctx.fillStyle = "#fff";
+    ctx.fillText(GLOBAIS.txt+GLOBAIS.pontos, cnv.width/2+20, cnv.height/2);
 	GLOBAIS.contLoop++;
 	requestAnimationFrame(loop, "canvas");
 }
@@ -171,12 +181,22 @@ sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 234)
 sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 168, 234));
 sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 210, 234));
 
-
-//inserir player
-sprites.push(new Sprite('images/pacman.png', 'player', 488, 144, 14, 14, 106, 181));
+fruta(6,130,181);
 cnv.width = 450;
 cnv.height = 248;
+//inserir player
+sprites.push(new Sprite('images/pacman.png', 'player', 488, 144, 14, 14, 104, 181));
 
 sprites[encontrar('player')].img.onload = function(){
+	GLOBAIS.pause = true;
     loop();
+}
+/********************************************************************************************/
+function fruta(ps, x, y) {//srcY + alt = spritesheet pontos
+	let lar = 16;
+	let alt = 16;
+	let srcX = 504 + lar*ps;
+	let srcY = 1;// + alt*tp;
+	
+	sprites.push(new Sprite('images/pacman.png', 'fruta', srcX, srcY, lar, alt, x, y));
 }

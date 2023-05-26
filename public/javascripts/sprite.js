@@ -89,6 +89,23 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				}
 			}
 		}
+		//fruta
+		if (this.flag == 'fruta' && colide(this, sprites[encontrar('player')])) {
+			this.srcY += this.alt;
+			this.flag = 'pontos';
+		}
+		//pontos
+		if (this.flag == 'pontos') {
+			if (this.posX < cnv.width/2+20) {
+				this.posX++;
+			}
+			if (this.posY < cnv.height/2-16) {
+				this.posY++;
+			}
+			if (this.posY > cnv.height/2-16) {
+				this.posY--;
+			}
+		}
     }
 }
 Sprite.prototype.metax = function(){

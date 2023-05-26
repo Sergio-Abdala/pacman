@@ -12,24 +12,28 @@ function keydownHandler(e){
 			sprites[encontrar('player')].movLeft = false;
 			//sprites[encontrar('player')].movUp = false;
 			//sprites[encontrar('player')].movDown = false;
+			GLOBAIS.pause = false;
 		break;
 		case LEFT:
 			sprites[encontrar('player')].movRight = false;
 			sprites[encontrar('player')].movLeft = true;
 			//sprites[encontrar('player')].movUp = false;
 			//sprites[encontrar('player')].movDown = false;
+			GLOBAIS.pause = false;
 		break;
 		case UP:
 			//sprites[1].movRight = false;
 			//sprites[1].movLeft = false;
 			sprites[encontrar('player')].movUp = true;
 			sprites[encontrar('player')].movDown = false;
+			GLOBAIS.pause = false;
 		break;
 		case DOWN:
 			//sprites[1].movRight = false;
 			//sprites[1].movLeft = false;
 			sprites[encontrar('player')].movUp = false;
 			sprites[encontrar('player')].movDown = true;
+			GLOBAIS.pause = false;
 		break;
 	}
 }
