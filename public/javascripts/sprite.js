@@ -94,6 +94,11 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			this.srcY += this.alt;
 			this.flag = 'pontos';
 		}
+		//grão
+		if (this.flag == 'grao' && colide(this, sprites[encontrar('player')])) {
+			this.flag = 'remover';
+			GLOBAIS.somar++;
+		}
 		//pontos
 		if (this.flag == 'pontos') {
 			if (this.posX < cnv.width/2+20) {

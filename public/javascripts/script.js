@@ -182,6 +182,61 @@ sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 234)
 sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 168, 234));
 sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 210, 234));
 
+//grãos distancia entre grãos 8
+grao(10,26);
+grao(50,18);
+grao(50,26);
+grao(58,34);
+grao(66,34);
+grao(74,18);
+grao(74,26);
+grao(146,18);
+grao(146,26);
+grao(154,34);
+grao(162,34);
+grao(58,34);
+
+grao(210,26);
+grao(170,18);
+grao(170,26);
+
+grao(58,66);
+grao(66,66);
+grao(82,66);
+grao(90,66);
+
+grao(130,66);
+grao(138,66);
+grao(154,66);
+grao(162,66);
+
+for (let k = 0; k < 4; k++){
+	grao(50,42+8*k);//terceira linha vertical posX
+	grao(98,42+8*k);//sexta posX
+	grao(122,42+8*k);//setima posX
+	grao(170,42+8*k);//oitava posX
+
+	
+}
+for (let k = 0; k < 6; k++) {
+	grao(10+8*k,10);//primeira linha horizontal cima posY e vertical posX
+	grao(10+8*k,34);//segunda linha horizontal cima posY
+	//
+	grao(170+8*k,10);
+	grao(170+8*k,34);
+	
+}
+for (let k = 0; k < 10; k++) {
+	grao(74+8*k,10);//quarta linha vertical posX
+	grao(74+8*k,34);
+	grao(74,66+8*k);//terceira linha horizontal posY
+	grao(146,66+8*k);
+}
+for (let k = 0; k < 19; k++) {
+	grao(26,42+8*k);//segunda linha vertical posX
+	grao(194,42+8*k);//nona posX
+}
+
 
 cnv.width = 450;
 cnv.height = 248;
@@ -192,11 +247,11 @@ sprites[encontrar('player')].img.onload = function(){
 	GLOBAIS.pause = true;
     loop();
 }
-fruta(6,130,181);
-fruta(3,150,181);
+/*fruta(6,130,181);
+fruta(3,150,181);*/
 /********************************************************************************************/
 function grao(x,y){
-	sprites.push(new Sprite('images/pacmanTransparente.png', 'grao', 210, 218, 1, 1, x, y));
+	sprites.push(new Sprite('images/pacmanTransparente.png', 'grao', 210, 218, 3, 3, x, y));
 }
 function fruta(ps, x, y) {//srcY + alt = spritesheet pontos
 	let lar = 16;
