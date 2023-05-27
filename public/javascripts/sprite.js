@@ -15,6 +15,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 		this.movDown = false;
 		this.speed = 1;
         this.flag = flag;
+		this.frame = 0;
     //metodos..............................
     this.render = function(){//renderizar em tela...
         //if (this.exibir) {
@@ -150,6 +151,29 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			GLOBAIS.pontos++;
 			GLOBAIS.somar--;
 			GLOBAIS.txt = 'SCORE: '+ GLOBAIS.pontos;
+		}
+		if (this.flag == 'fantom') {
+			if (!(GLOBAIS.contLoop % 10)) {
+				if(this.frame ){
+					this.frame=0;this.srcX -= this.lar;
+				}else{
+					this.frame=1;this.srcX += this.lar;
+				}
+			}			
+			if (this.movRight && this.srcX != 456 && this.srcX != 456+this.lar) {
+				this.srcX = 456;
+			}
+			if (this.movLeft && this.srcX != 456+this.lar*2 && this.srcX != 456+this.lar*3) {
+				this.srcX = 456+this.lar*2;
+			}
+			if (this.movUp && this.srcX != 456+this.lar*4 && this.srcX != 456+this.lar*5) {
+				this.srcX = 456+this.lar*4;
+			}
+			if (this.movDown && this.srcX != 456+this.lar*6 && this.srcX != 456+this.lar*7) {
+				this.srcX = 456+this.lar*6;
+			}
+			//colidir com paredes
+			//decidir direção
 		}
     }
 }

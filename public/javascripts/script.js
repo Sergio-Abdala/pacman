@@ -64,7 +64,10 @@ function contar(obj){//descobre quantos objetos com a mesma flag tem em jogo
     return countObj;
 }
 /*******************************************************************************************************/
-
+ajuste();
+paredes();
+graos();
+fantom(2,105,110);
 cnv.width = 450;
 cnv.height = 248;
 //inserir player
@@ -87,4 +90,7 @@ function fruta(ps, x, y) {//srcY + alt = spritesheet pontos
 	let srcY = 1;// + alt*tp;
 	
 	sprites.push(new Sprite('images/pacmanTransparente.png', 'fruta', srcX, srcY, lar, alt, x, y));
+}
+function fantom(tp, x, y) {//105,110 saida prisão...
+	sprites.push(new Sprite('images/pacmanTransparente.png', 'fantom', 456, 64+16*tp, 16, 16, x, y));
 }
