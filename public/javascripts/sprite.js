@@ -149,6 +149,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 		if (GLOBAIS.somar) {
 			GLOBAIS.pontos++;
 			GLOBAIS.somar--;
+			GLOBAIS.txt = 'SCORE: '+ GLOBAIS.pontos;
 		}
     }
 }

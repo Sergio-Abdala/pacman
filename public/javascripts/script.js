@@ -35,8 +35,15 @@ function loop(){
 	//GLOBAIS.txt = "texto... ";
     ctx.font = "15px Arial";//  TEXTO...
 	ctx.fillStyle = "#fff";
-    ctx.fillText(GLOBAIS.txt+GLOBAIS.pontos, cnv.width/2+20, cnv.height/2);
+    ctx.fillText(GLOBAIS.txt, cnv.width/2+20, cnv.height/2);
 	GLOBAIS.contLoop++;
+
+	if (!contar('grao')) {//fim de jogo...
+		GLOBAIS.txt = 'FIM DE JOGO... ';
+		GLOBAIS.gameOver = true;
+	}
+
+
 	requestAnimationFrame(loop, "canvas");
 }
 function encontrar(flag){//descobre index do objeto que corresponda a flag com maior index do array
@@ -195,50 +202,37 @@ grao(146,26);
 grao(154,34);
 grao(162,34);
 grao(58,34);
-
 grao(210,26);
 grao(170,18);
 grao(170,26);
-
 grao(58,66);
 grao(66,66);
 grao(82,66);
 grao(90,66);
-
 grao(130,66);
 grao(138,66);
 grao(154,66);
 grao(162,66);
-
 grao(50,122);
 grao(50,130);
-
 grao(170,130);
 grao(170,122);
-
 grao(10, 186);
 grao(18, 186);
-
 grao(202, 186);
 grao(210, 186);
-
 grao(138,210);
 grao(130,210);
-
 grao(82,210);
 grao(90,210);
 grao(74,170);
 grao(74,178);
-
 grao(98,154);
 grao(98,146);
-
 grao(122,154);
 grao(122,146);
-
 grao(146,178);
 grao(146,170);
-
 for (let k = 0; k < 3; k++){
 	grao(154+8*k,114);
 	grao(50+8*k,114);
@@ -250,8 +244,7 @@ for (let k = 0; k < 3; k++){
 	grao(122,194+8*k);
 	grao(146,210+8*k);
 	
-}
-	
+}	
 for (let k = 0; k < 4; k++){
 	grao(50,42+8*k);//terceira linha vertical posX
 	grao(98,42+8*k);//sexta posX
@@ -267,7 +260,6 @@ for (let k = 0; k < 5; k++) {
 	grao(170,194+8*k);
 	grao(210,194+8*k);
 }
-
 for (let k = 0; k < 6; k++) {
 	grao(10+8*k,10);//primeira linha horizontal cima posY e vertical posX
 	grao(10+8*k,34);//segunda linha horizontal cima posY
@@ -286,7 +278,6 @@ for (let k = 0; k < 9; k++) {
 	grao(122+8*k,186);
 	grao(34+8*k,186);
 }
-
 for (let k = 0; k < 10; k++) {
 	grao(74+8*k,10);//quarta linha vertical posX
 	grao(74+8*k,34);
@@ -303,7 +294,7 @@ for (let k = 0; k < 19; k++) {
 for (let k = 0; k < 26; k++) {
 	grao(10+8*k, 234);
 }
-
+/*******************************************************************************************************/
 cnv.width = 450;
 cnv.height = 248;
 //inserir player
