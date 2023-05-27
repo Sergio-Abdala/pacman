@@ -210,33 +210,99 @@ grao(138,66);
 grao(154,66);
 grao(162,66);
 
+grao(50,122);
+grao(50,130);
+
+grao(170,130);
+grao(170,122);
+
+grao(10, 186);
+grao(18, 186);
+
+grao(202, 186);
+grao(210, 186);
+
+grao(138,210);
+grao(130,210);
+
+grao(82,210);
+grao(90,210);
+grao(74,170);
+grao(74,178);
+
+grao(98,154);
+grao(98,146);
+
+grao(122,154);
+grao(122,146);
+
+grao(146,178);
+grao(146,170);
+
+for (let k = 0; k < 3; k++){
+	grao(154+8*k,114);
+	grao(50+8*k,114);
+	grao(34+8*k,138);
+	grao(170+8*k,138);
+	grao(74,210+8*k);
+	
+	grao(98,194+8*k);
+	grao(122,194+8*k);
+	grao(146,210+8*k);
+	
+}
+	
 for (let k = 0; k < 4; k++){
 	grao(50,42+8*k);//terceira linha vertical posX
 	grao(98,42+8*k);//sexta posX
 	grao(122,42+8*k);//setima posX
 	grao(170,42+8*k);//oitava posX
 
-	
 }
+for (let k = 0; k < 5; k++) {
+	grao(34+8*k,90);
+	grao(154+8*k,90);
+	grao(10,194+8*k);
+	grao(50,194+8*k);
+	grao(170,194+8*k);
+	grao(210,194+8*k);
+}
+
 for (let k = 0; k < 6; k++) {
 	grao(10+8*k,10);//primeira linha horizontal cima posY e vertical posX
 	grao(10+8*k,34);//segunda linha horizontal cima posY
 	//
 	grao(170+8*k,10);
 	grao(170+8*k,34);
-	
+
 }
+for (let k = 0; k < 8; k++) {
+	grao(82+8*k,90);
+	grao(82+8*k,138);
+}
+for (let k = 0; k < 9; k++) {
+	grao(34+8*k,162);
+	grao(122+8*k,162);
+	grao(122+8*k,186);
+	grao(34+8*k,186);
+}
+
 for (let k = 0; k < 10; k++) {
 	grao(74+8*k,10);//quarta linha vertical posX
 	grao(74+8*k,34);
 	grao(74,66+8*k);//terceira linha horizontal posY
 	grao(146,66+8*k);
+	
 }
 for (let k = 0; k < 19; k++) {
 	grao(26,42+8*k);//segunda linha vertical posX
 	grao(194,42+8*k);//nona posX
-}
 
+	
+}
+for (let k = 0; k < 26; k++) {
+	grao(10+8*k, 234);
+}
 
 cnv.width = 450;
 cnv.height = 248;
