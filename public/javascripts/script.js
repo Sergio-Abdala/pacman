@@ -109,7 +109,7 @@ function fantom(tp, x, y) {//105,110 saida prisão...
 	sprites[encontrar('fantom')].cor = tp;
 }
 function power(x,y){
-    sprites.push(new Sprite('images/coins3.jpg', 'power', 34, 16, 50, 50, x, y));
-	sprites[encontrar('power')].escala=1;
+    sprites.push(new Sprite('images/coinsTransparente.png', 'power', 34, 16, 50, 50, x, y));
+	sprites[encontrar('power')].escala=.2;
 	console.log('power');
 }

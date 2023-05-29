@@ -286,7 +286,47 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			}
 		}
 		if (this.flag == 'power') {
-			//???
+			if(!(GLOBAIS.contLoop % 7)){//animação...
+				switch (this.frame) {
+					case 0:
+						this.srcX = 34;
+						break;
+					case 1:
+						this.srcX = 100;
+						break;
+					case 2:
+						this.srcX = 162;
+						break;
+					case 3:
+						this.srcX = 216;
+						break;
+					case 4:
+						this.lar -= 3;
+						this.srcX = 258;
+						//mudar y
+						if (this.srcY == 16) {
+							this.srcY = 94;
+						}else{
+							this.srcY = 16;
+						}
+						break;
+					case 5:
+						this.lar += 3;
+						this.srcX = 296;
+						break;
+					case 6:
+						this.srcX = 350;
+						break;
+					case 7:
+						this.srcX = 410;
+						break;
+					
+					default:
+						this.frame = -1;
+						break;
+				}
+				this.frame++;
+			}
 		}
     }
 }
