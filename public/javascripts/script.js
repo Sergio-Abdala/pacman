@@ -69,6 +69,7 @@ function contar(obj){//descobre quantos objetos com a mesma flag tem em jogo
 ajuste();
 paredes(1);
 graos();
+power(230,10);
 
 fantom(0,105,110);
 sprites[encontrar('fantom')].movUp=true;
@@ -106,4 +107,9 @@ function fantom(tp, x, y) {//105,110 saida prisão...
 	sprites.push(new Sprite('images/pacmanTransparente.png', 'fantom', 456, 64+16*tp, 16, 16, x, y));
 	sprites[encontrar('fantom')].speed=0.5;
 	sprites[encontrar('fantom')].cor = tp;
+}
+function power(x,y){
+    sprites.push(new Sprite('images/coins3.jpg', 'power', 34, 16, 50, 50, x, y));
+	sprites[encontrar('power')].escala=1;
+	console.log('power');
 }

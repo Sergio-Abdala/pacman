@@ -43,7 +43,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 		/**********************************************************************************/
 		//animação do player...............................................................
 		if (this.flag == 'player') {
-			if (!(GLOBAIS.contLoop % 10)) {//frequencia na mudança do sprite
+			if (!(GLOBAIS.contLoop % 5)) {//frequencia na mudança do sprite
 				if (this.movRight) {
 					if (GLOBAIS.nerfar) {
 						this.srcY = 0;
@@ -284,6 +284,9 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					}
 				}
 			}
+		}
+		if (this.flag == 'power') {
+			//???
 		}
     }
 }
