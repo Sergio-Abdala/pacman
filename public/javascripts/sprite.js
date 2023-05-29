@@ -172,8 +172,79 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			if (this.movDown && this.srcX != 456+this.lar*6 && this.srcX != 456+this.lar*7) {
 				this.srcX = 456+this.lar*6;
 			}
-			//colidir com paredes
-			//decidir direção
+			//colidir
+			for (let j = 0; j < sprites.length; j++) {
+				//colidir com paredes
+				if (sprites[j].flag == 'parede') {
+					//bloqueando(this, sprites[j]);
+				}
+				//colidir com ajuste
+				if (sprites[j].flag == 'ajuste') {
+					if (colide(this, sprites[j]) && this.ajuste != j) {
+						console.log('ajuste '+ sprites[j].posX +', '+ sprites[j].posY);
+						this.movDown = this.movLeft = this.movRight = this.movUp = false;
+						if (this.meiox() < sprites[j].meiox()) {
+							this.posX+=this.speed;
+						}
+						if (this.meiox() > sprites[j].meiox()) {
+							this.posX-=this.speed;
+						}
+						if (this.meioy() < sprites[j].meioy()) {
+							this.posY+=this.speed;
+						}
+						if (this.meioy() > sprites[j].meioy()) {
+							this.posY-=this.speed;
+						}
+						let temporariox = this.meiox() - sprites[j].meiox();
+						let xok = false; let yok = false;
+						if (temporariox < 0) {
+							temporariox *= -1;
+						}
+						if (temporariox < 1) {
+							xok = true;
+						}
+						let temporarioy = this.meioy() - sprites[j].meioy();
+						if (temporarioy < 0) {
+							temporarioy *= -1;
+						}
+						if (temporarioy < 1) {
+							yok = true;
+						}
+						if (xok && yok) {
+							this.ajuste = j;
+						}
+					}
+					if (this.ajuste == j && !this.movUp && !this.movDown && !this.movLeft && !this.movRight) {
+						//decidir direção
+						console.log('decidir direção '+ sprites[j].direcao +' contLoop: '+ GLOBAIS.contLoop);
+						let arr = sprites[j].direcao.split(",");
+						let sort = Math.random() * (arr.length-1);
+						console.log('sort : '+ sort.toFixed(0));
+						switch (arr[sort.toFixed(0)]) {//GLOBAIS.contLoop%arr.length
+							case 'u':
+								this.movUp = true;
+								console.log('movUp');
+								break;
+							case 'd':
+								this.movDown = true;
+								console.log('movDown');
+								break;
+							case 'l':
+								this.movLeft = true;
+								console.log('movLet');
+								break;
+							case 'r':
+								this.movRight = true;
+								console.log('movRight');
+								break;
+						
+							default:
+								console.log(this.flag +' sem movimento');
+								break;
+						}
+					}
+				}
+			}
 		}
     }
 }
@@ -192,6 +263,9 @@ Sprite.prototype.meioy = function(){
 function bloqueando(p1, p2){//(personagem, objeto)
 	// p1 --> personagem
 	// p2 --> parede bloqueante elemento de interação..
+	if (p1.flag == 'fantom') {
+		p1.lar = 14;p1.alt = 14;
+	}
 	//catetos distancia entre os pontos
 	let catx = p1.meiox() - p2.meiox();
 	let caty = p1.meioy() - p2.meioy();
@@ -200,45 +274,46 @@ function bloqueando(p1, p2){//(personagem, objeto)
 	let somay = p1.metay() + p2.metay();
 	// tocando-se!!!!!!!!!!
 	if (Math.abs(catx) < somax && Math.abs(caty) < somay) {
-		//p2.ver = false;
 		//setTimeout(function(){ p2.ver = true; }, 1000);
 		let overlapx = somax - Math.abs(catx);
 		let overlapy = somay - Math.abs(caty);
 		if (overlapx >= overlapy) { //colisão por cima ou por baixo
 			this.metaHorizontal = this.metaVertical = null;
 			p1.movUp = p1.movDown = p1.movLeft = p1.movRight = false;
+			//fantom tem que escolher entre esquerda e direita???
+			if (p1.flag == 'fantom') {
+				//(GLOBAIS.contLoop%2) ? p1.movRight = true : p1.movLeft = true;
+
+			}
 			if (caty > 0) { // bateu a cabeça do personagem colidiu parte de cima do personagem que esta sendo controlado
 				p1.posY += overlapy;
 				//
-				console.log('bateu cabeça: '+ p2.id);
-				if (p2.id == 'porta') {
-					console.log('entrou '+ p2.txt);
-					//aqui muda de fase....					
-					sprites[encontrar('player')].fase = p2.txt;					
-				}
+				console.log(p1.flag +' bateu cabeça: '+ p2.flag);
 			} else {
 				p1.posY -= overlapy;
 				//
-				console.log('esta pisando: '+ p2.id);
-				if (p2.id == 'porta') {
-					console.log('saiu '+ p2.txt);
-					//aqui muda de fase....					
-					sprites[encontrar('player')].fase = p2.txt;					
-				}
-			}
+				console.log(p1.flag +' esta pisando: '+ p2.flag);
+			}			
 		} else { // colisão pelos lados esquerda ou direita
 			this.metaHorizontal = this.metaVertical = null;
 			p1.movUp = p1.movDown = p1.movLeft = p1.movRight = false;
+			//fantom tem que escolher entre subir ou descer???
+			if (p1.flag == 'fantom') {
+				//(GLOBAIS.contLoop%2) ? p1.movUp = true : p1.movDown = true;
+			}
 			if(catx > 0){ // colidiu na esquerda
 				p1.posX += overlapx;
 				//
-				console.log('player bateu à esquerda: '+ p2.id);
+				console.log(p1.flag +' bateu à esquerda: '+ p2.flag);
 			}else{
 				p1.posX -= overlapx;
 				//
-				console.log('player bateu à direita: '+ p2.id);
+				console.log(p1.flag +' bateu à direita: '+ p2.flag);
 			}
 		}
+	}
+	if (p1.flag == 'fantom') {
+		p1.lar = 16;p1.alt = 16;
 	}
 }
 function empurando(p2, p1){//(personagem, objeto)
@@ -282,7 +357,7 @@ function colide(p1, p2){
 	let somay = p1.metay() + p2.metay();
 	// tocando-se!!!!!!!!!!
 	if (Math.abs(catx) < somax && Math.abs(caty) < somay) {
-		//p2.ver = false;
+		//
 		return true;
 	}else{
 		return false;
