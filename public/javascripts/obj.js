@@ -1,5 +1,5 @@
-function paredes() {
-    	//paredes do laberinto 228 0
+function paredes(id) {
+    //paredes do laberinto 228 0
 	sprites.push(new Sprite('images/pacman.png', 'parede', 228, 0, 225, 4, 0, 0));
 	sprites.push(new Sprite('images/pacman.png', 'parede', 288, 0, 8, 28, 60, 0));
 	sprites.push(new Sprite('images/pacman.png', 'parede', 288, 0, 8, 28, 156, 0));
@@ -48,7 +48,7 @@ function paredes() {
 	sprites.push(new Sprite('images/pacman.png', 'parede', 228, 244, 224, 4, 0, 244));
 }
 function ajuste() {
-    	//ajustar personagem / player aos corredores do laberinto mini pacman = srcX, srcY = 508, 200,
+    //ajustar personagem / player aos corredores do laberinto mini pacman = srcX, srcY = 508, 200,
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 9, 9));sprites[encontrar('ajuste')].direcao = 'r,d';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 9));sprites[encontrar('ajuste')].direcao = 'l,d';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 72, 9));sprites[encontrar('ajuste')].direcao = 'r,d';
@@ -129,7 +129,7 @@ function ajuste() {
 
 }
 function graos() {
-    	//grãos distancia entre grãos 8
+    //grãos distancia entre grãos 8
 	grao(10,26);
 	grao(50,18);
 	grao(50,26);

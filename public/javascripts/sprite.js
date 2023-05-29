@@ -45,16 +45,32 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 		if (this.flag == 'player') {
 			if (!(GLOBAIS.contLoop % 10)) {//frequencia na mudança do sprite
 				if (this.movRight) {
-					this.srcY = 144;					
+					if (GLOBAIS.nerfar) {
+						this.srcY = 0;
+					}else{
+						this.srcY = 144;
+					}
 				}
 				if (this.movLeft) {
-					this.srcY = 160;
+					if (GLOBAIS.nerfar) {
+						this.srcY = 16;
+					}else{
+						this.srcY = 160;
+					}					
 				}
 				if (this.movUp) {
-					this.srcY = 178;	
+					if (GLOBAIS.nerfar) {
+						this.srcY = 34;
+					}else{
+						this.srcY = 178;
+					}
 				}
 				if (this.movDown) {
-					this.srcY = 192;	
+					if (GLOBAIS.nerfar) {
+						this.srcY = 48;
+					}else{
+						this.srcY = 192;	
+					}					
 				}
 				//animação
 				if (this.srcX == 472) {
@@ -159,19 +175,42 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				}else{
 					this.frame=1;this.srcX += this.lar;
 				}
-			}			
-			if (this.movRight && this.srcX != 456 && this.srcX != 456+this.lar) {
-				this.srcX = 456;
 			}
-			if (this.movLeft && this.srcX != 456+this.lar*2 && this.srcX != 456+this.lar*3) {
-				this.srcX = 456+this.lar*2;
+			if (GLOBAIS.nerfar) {//fantasma nerfado
+				this.srcY = 64;
+				if (GLOBAIS.fim) {
+					//alternando cor fim do nerf
+					if (this.frame) {
+						if (this.srcX != 456+this.lar*8 && this.srcX != 456+this.lar*9) {//soma 2 ao vezes para mudar pro claro de 8 para 10
+							this.srcX = 456+this.lar*8;
+						}
+					}else{
+						if (this.srcX != 456+this.lar*10 && this.srcX != 456+this.lar*11) {//soma 2 ao vezes para mudar pro claro de 8 para 10
+							this.srcX = 456+this.lar*10;
+						}
+					}						
+				}else{
+					if (this.srcX != 456+this.lar*8 && this.srcX != 456+this.lar*9) {//soma 2 ao vezes para mudar pro claro de 8 para 10
+						this.srcX = 456+this.lar*8;
+					}
+				}				
+							
+			}else{//fantasma normal
+				this.srcY = 64+16*this.cor;
+				if (this.movRight && this.srcX != 456 && this.srcX != 456+this.lar) {
+					this.srcX = 456;
+				}
+				if (this.movLeft && this.srcX != 456+this.lar*2 && this.srcX != 456+this.lar*3) {
+					this.srcX = 456+this.lar*2;
+				}
+				if (this.movUp && this.srcX != 456+this.lar*4 && this.srcX != 456+this.lar*5) {
+					this.srcX = 456+this.lar*4;
+				}
+				if (this.movDown && this.srcX != 456+this.lar*6 && this.srcX != 456+this.lar*7) {
+					this.srcX = 456+this.lar*6;
+				}
 			}
-			if (this.movUp && this.srcX != 456+this.lar*4 && this.srcX != 456+this.lar*5) {
-				this.srcX = 456+this.lar*4;
-			}
-			if (this.movDown && this.srcX != 456+this.lar*6 && this.srcX != 456+this.lar*7) {
-				this.srcX = 456+this.lar*6;
-			}
+			
 			//colidir
 			for (let j = 0; j < sprites.length; j++) {
 				//colidir com paredes
@@ -181,7 +220,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				//colidir com ajuste
 				if (sprites[j].flag == 'ajuste') {
 					if (colide(this, sprites[j]) && this.ajuste != j) {
-						console.log('ajuste '+ sprites[j].posX +', '+ sprites[j].posY);
+						//console.log('ajuste '+ sprites[j].posX +', '+ sprites[j].posY);
 						this.movDown = this.movLeft = this.movRight = this.movUp = false;
 						if (this.meiox() < sprites[j].meiox()) {
 							this.posX+=this.speed;
@@ -216,26 +255,26 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					}
 					if (this.ajuste == j && !this.movUp && !this.movDown && !this.movLeft && !this.movRight) {
 						//decidir direção
-						console.log('decidir direção '+ sprites[j].direcao +' contLoop: '+ GLOBAIS.contLoop);
+						//console.log('decidir direção '+ sprites[j].direcao +' contLoop: '+ GLOBAIS.contLoop);
 						let arr = sprites[j].direcao.split(",");
 						let sort = Math.random() * (arr.length-1);
-						console.log('sort : '+ sort.toFixed(0));
+						//console.log('sort : '+ sort.toFixed(0));
 						switch (arr[sort.toFixed(0)]) {//GLOBAIS.contLoop%arr.length
 							case 'u':
 								this.movUp = true;
-								console.log('movUp');
+								//console.log('movUp');
 								break;
 							case 'd':
 								this.movDown = true;
-								console.log('movDown');
+								//console.log('movDown');
 								break;
 							case 'l':
 								this.movLeft = true;
-								console.log('movLet');
+								//console.log('movLet');
 								break;
 							case 'r':
 								this.movRight = true;
-								console.log('movRight');
+								//console.log('movRight');
 								break;
 						
 							default:

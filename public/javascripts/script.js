@@ -9,6 +9,8 @@ var GLOBAIS = {
 	somar: 0,
 	pause: false,
 	gameOver: false,
+	nerfar: false,
+	fim: false,
 	txt: "SCORE : ",
 	contLoop: 0
 }
@@ -65,16 +67,17 @@ function contar(obj){//descobre quantos objetos com a mesma flag tem em jogo
 }
 /*******************************************************************************************************/
 ajuste();
-paredes();
+paredes(1);
 graos();
+
 fantom(0,105,110);
 sprites[encontrar('fantom')].movUp=true;
 fantom(1,105,110);
-sprites[encontrar('fantom')].movUp=true;
+sprites[encontrar('fantom')].movUp=true;sprites[encontrar('fantom')].speed=0.7;
 fantom(2,105,110);
-sprites[encontrar('fantom')].movUp=true;
+sprites[encontrar('fantom')].movUp=true;sprites[encontrar('fantom')].speed=.9;
 fantom(3,105,110);
-sprites[encontrar('fantom')].movUp=true;
+sprites[encontrar('fantom')].movUp=true;sprites[encontrar('fantom')].speed=1.1;
 
 cnv.width = 450;
 cnv.height = 248;
@@ -101,5 +104,6 @@ function fruta(ps, x, y) {//srcY + alt = spritesheet pontos
 }
 function fantom(tp, x, y) {//105,110 saida prisão...
 	sprites.push(new Sprite('images/pacmanTransparente.png', 'fantom', 456, 64+16*tp, 16, 16, x, y));
-	sprites[encontrar('fantom')].speed=.5;
+	sprites[encontrar('fantom')].speed=0.5;
+	sprites[encontrar('fantom')].cor = tp;
 }
