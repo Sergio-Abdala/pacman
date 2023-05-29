@@ -53,7 +53,6 @@ function ajuste() {
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 9));sprites[encontrar('ajuste')].direcao = 'l,d';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 72, 9));sprites[encontrar('ajuste')].direcao = 'r,d';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 9));sprites[encontrar('ajuste')].direcao = 'l,d';
-    sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 157, 9));sprites[encontrar('ajuste')].direcao = 'l,r';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 170, 9));sprites[encontrar('ajuste')].direcao = 'r,d';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 210, 9));sprites[encontrar('ajuste')].direcao = 'l,d';
 
@@ -79,6 +78,7 @@ function ajuste() {
 
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 24, 90));sprites[encontrar('ajuste')].direcao = 'u,d,r';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 90));sprites[encontrar('ajuste')].direcao = 'u,d,l,r';
+    sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 108, 90));sprites[encontrar('ajuste')].direcao = 'l,r';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 90));sprites[encontrar('ajuste')].direcao = 'l,r,u,d';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 192, 90));sprites[encontrar('ajuste')].direcao = 'u,d,l';
 

@@ -68,13 +68,13 @@ ajuste();
 paredes();
 graos();
 fantom(0,105,110);
-sprites[encontrar('fantom')].movLeft=true;
+sprites[encontrar('fantom')].movUp=true;
 fantom(1,105,110);
-sprites[encontrar('fantom')].movRight=true;
+sprites[encontrar('fantom')].movUp=true;
 fantom(2,105,110);
 sprites[encontrar('fantom')].movUp=true;
 fantom(3,105,110);
-sprites[encontrar('fantom')].movDown=true;
+sprites[encontrar('fantom')].movUp=true;
 
 cnv.width = 450;
 cnv.height = 248;
