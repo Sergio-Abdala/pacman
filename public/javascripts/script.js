@@ -70,8 +70,10 @@ function contar(obj){//descobre quantos objetos com a mesma flag tem em jogo
 paredes(1);
 ajuste();
 graos();
-power(230,10);
-power(130,181);
+power(6,14);
+power(206,14);
+power(6,215);
+power(206,215);
 
 fantom(0,105,110);
 sprites[encontrar('fantom')].movRight=true;
