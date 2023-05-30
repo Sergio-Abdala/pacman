@@ -88,6 +88,7 @@ fantom(2,105,110);
 sprites[encontrar('fantom')].movLeft=true;
 fantom(3,105,110);
 sprites[encontrar('fantom')].movLeft=true;
+habeascorpus();
 
 cnv.width = 450;
 cnv.height = 248;
@@ -129,4 +130,10 @@ function voltar(){
 	while (encontrar('fantom')) {
 		sprites[encontrar('fantom')].flag = 'zoio';
 	}
+}
+function habeascorpus() {
+	setTimeout(()=>{
+		libertar(); console.log('liberdade!!!');
+		habeascorpus();
+	}, 5000);
 }
