@@ -137,7 +137,7 @@ function habeascorpus(t) {
 	}
 	setTimeout(()=>{
 		libertar(); console.log('liberdade!!! ==> '+ t);
-		t += 3000;
+		t += 4000;
 		habeascorpus(t);
 	}, t);
 }
