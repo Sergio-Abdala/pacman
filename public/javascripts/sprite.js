@@ -130,7 +130,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			if (this.posY > cnv.height/2-16) {
 				this.posY--;
 			}
-			if (this.posX == cnv.width/2+20 && this.posY == cnv.height/2-16){
+			if (this.posX > cnv.width/2+5 && this.posY < cnv.height/2+15 && this.posY > cnv.height/2-20){
 				this.flag = 'remover';
 				//quantos pontos
 				if (this.srcX == 504) {
@@ -138,28 +138,35 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					GLOBAIS.somar += 100;
 				}
 				if (this.srcX == 520) {
-					//100 pontos
 					GLOBAIS.somar += 200;
 				}
 				if (this.srcX == 536) {
-					//100 pontos
 					GLOBAIS.somar += 500;
 				}
 				if (this.srcX == 552) {
-					//100 pontos
 					GLOBAIS.somar += 700;
 				}
 				if (this.srcX == 568) {
-					//100 pontos
 					GLOBAIS.somar += 1000;
 				}
 				if (this.srcX == 584) {
-					//100 pontos
 					GLOBAIS.somar += 2000;
 				}
 				if (this.srcX == 600) {
-					//100 pontos
 					GLOBAIS.somar += 5000;
+				}
+				//fantasmas
+				if (this.srcX == 456) {
+					GLOBAIS.somar += 200;
+				}
+				if (this.srcX == 472) {
+					GLOBAIS.somar += 400;
+				}
+				if (this.srcX == 488) {
+					GLOBAIS.somar += 800;
+				}
+				if (this.srcX == 504) {
+					GLOBAIS.somar += 800;
 				}
 			}
 		}
@@ -259,7 +266,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 								this.movUp = true;
 								//console.log('movUp');
 								if (sprites[j].posX == 108 && sprites[j].posY == 114) {
-									sprites[j].flag = 'remover';									
+									sprites[j].flag = 'remover';//remove ajuste que liberta da prisão o fantasma					
 								}
 								break;
 							case 'd':
@@ -286,16 +293,21 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				console.log('colisão '+ this.flag +' player');
 				if (this.srcX > 580) {
 					console.log('pacman comeu');
+					//??? inserir pontos do fantasma comido
+					sprites.push(new Sprite('images/pacmanTransparente.png', 'pontos', 456+16*contar('zoio'), 64+16*4, 16, 16, this.posX, this.posY));
 					//fantasma vira zoio
 					this.flag = 'zoio';
 					this.srcX = 584;
-					this.srcY = 79;
+					this.srcY = 79;					
 				}else{
 					console.log('pacman se fodeu morreu...');
 				}
 			}
 		}
 		if (this.flag == 'zoio') {
+			if (this.posX > 87 && this.posX < 136 && this.posY > 97 && this.posY < 128 && !GLOBAIS.nerfar) {
+				this.flag = 'fantom';
+			}
 			for (let k = 0; k < sprites.length; k++) {
 				let obj = sprites[k];
 				if (obj.flag == 'ajuste') {
@@ -388,7 +400,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 						GLOBAIS.nerfar = false;
 						GLOBAIS.fim = false;
 					}, 5000);
-				}, 5000);
+				}, 3000);
 			}
 		}
     }

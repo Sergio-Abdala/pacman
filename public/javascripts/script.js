@@ -66,8 +66,9 @@ function contar(obj){//descobre quantos objetos com a mesma flag tem em jogo
     return countObj;
 }
 /*******************************************************************************************************/
-ajuste();
+
 paredes(1);
+ajuste();
 graos();
 power(230,10);
 power(130,181);

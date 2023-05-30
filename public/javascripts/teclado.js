@@ -42,68 +42,76 @@ function keyupHandler(e){
 	switch(e.keyCode){
 		case RIGHT:
 			sprites[encontrar('player')].movRight = false;
-		break;
+			break;
 		case LEFT:
 			sprites[encontrar('player')].movLeft = false;
-		break;
+			break;
 		case UP:
 			sprites[encontrar('player')].movUp = false;
-		break;
+			break;
 		case DOWN:
 			sprites[encontrar('player')].movDown = false;
-		break;
+			break;
 		case 32: //barra de espaço
-		break;
+			GLOBAIS.nerfar = true;
+			setTimeout(()=>{
+				GLOBAIS.fim = true;
+				setTimeout(() =>{
+					GLOBAIS.nerfar = false;
+					GLOBAIS.fim = false;
+				}, 5000);
+			}, 5000);
+			break;
 		case 33://pag up
 			
-		break;
+			break;
 		case 34://pag down
 						
-		break;
+			break;
 		case 48: // 0 numero...
 			window.open("/help");
-		break;
+			break;
 		case 49: // 1 numero...			
 			
-		break;
+			break;
 		case 50: // 2 numero...			
 			
-		break;
+			break;
 		case 51: // 3 numero...
 			
-		break;
+			break;
 		case 52: // 4 numero...
 			
-		break;
+			break;
 		case 53: // 5 numero...
 			
-		break;
+			break;
 		case 54: // 6 numero...
 			
-		break;
+			break;
 		case 55: // 7 numero...
 			
-		break;
+			break;
 		case 56: // 8 numero...
 			
-		break;
+			break;
 		case 57: // 9 numero...
 			console.log('numero 9 <==> teclado...' );
-		break;
+			break;
 		case 72: // h letra...
 			console.log('letra h <==> teclado...' );
 			window.open("/help");
-		break;
+			break;
 		case 76://l
 			libertar();
-		break;
+			break;
 		case 77: // m letra...
 			console.log('letra m <==> teclado...');				
-		break;
+			break;
 		case 80: // p letra...
 			console.log('letra p <==> teclado...');
 			GLOBAIS.pause ? GLOBAIS.pause = false : GLOBAIS.pause = true;
-		break;
+			break;
 
 		default:
 			console.log('precionado tecla '+ e.keyCode);
