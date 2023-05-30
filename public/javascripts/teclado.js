@@ -94,6 +94,9 @@ function keyupHandler(e){
 			console.log('letra h <==> teclado...' );
 			window.open("/help");
 		break;
+		case 76://l
+			libertar();
+		break;
 		case 77: // m letra...
 			console.log('letra m <==> teclado...');				
 		break;
@@ -101,6 +104,10 @@ function keyupHandler(e){
 			console.log('letra p <==> teclado...');
 			GLOBAIS.pause ? GLOBAIS.pause = false : GLOBAIS.pause = true;
 		break;
+
+		default:
+			console.log('precionado tecla '+ e.keyCode);
+			break;
 	}
 }
 

@@ -84,18 +84,16 @@ function ajuste() {
 
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 114));sprites[encontrar('ajuste')].direcao = 'd,r';sprites[encontrar('ajuste')].zoio = 'r';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 114));sprites[encontrar('ajuste')].direcao = 'u,d,l';sprites[encontrar('ajuste')].zoio = 'u';
-
     sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 87, 114));sprites[encontrar('ajuste')].direcao = 'r';sprites[encontrar('ajuste')].zoio = 'r';
     sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 130, 114));sprites[encontrar('ajuste')].direcao = 'l';sprites[encontrar('ajuste')].zoio = 'l';
-
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 114));sprites[encontrar('ajuste')].direcao = 'u,d,r';sprites[encontrar('ajuste')].zoio = 'u';
     sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 168, 114));sprites[encontrar('ajuste')].direcao = 'l,d';sprites[encontrar('ajuste')].zoio = 'l';
 
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 24, 138));sprites[encontrar('ajuste')].direcao = 'd,r,u';sprites[encontrar('ajuste')].zoio = 'u';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 48, 138));sprites[encontrar('ajuste')].direcao = 'u,l';sprites[encontrar('ajuste')].zoio = 'u';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 74, 138));sprites[encontrar('ajuste')].direcao = 'u,r';sprites[encontrar('ajuste')].zoio = 'u';
-	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 96, 138));sprites[encontrar('ajuste')].direcao = 'l,r,d';sprites[encontrar('ajuste')].zoio = 'r';
-	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 120, 138));sprites[encontrar('ajuste')].direcao = 'l,r,d';sprites[encontrar('ajuste')].zoio = 'l';
+	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 96, 138));sprites[encontrar('ajuste')].direcao = 'l,r,d';sprites[encontrar('ajuste')].zoio = 'l';
+	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 120, 138));sprites[encontrar('ajuste')].direcao = 'l,r,d';sprites[encontrar('ajuste')].zoio = 'r';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 144, 138));sprites[encontrar('ajuste')].direcao = 'u,l';sprites[encontrar('ajuste')].zoio = 'u';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 168, 138));sprites[encontrar('ajuste')].direcao = 'u,r';sprites[encontrar('ajuste')].zoio = 'u';
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 192, 138));sprites[encontrar('ajuste')].direcao = 'u,d,l';sprites[encontrar('ajuste')].zoio = 'u';
