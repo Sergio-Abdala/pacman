@@ -66,9 +66,8 @@ function contar(obj){//descobre quantos objetos com a mesma flag tem em jogo
     return countObj;
 }
 /*******************************************************************************************************/
-
-paredes(1);
 ajuste();
+paredes(1);
 graos();
 power(230,10);
 power(130,181);
@@ -76,11 +75,11 @@ power(130,181);
 fantom(0,105,110);
 sprites[encontrar('fantom')].movRight=true;
 fantom(1,105,110);
-sprites[encontrar('fantom')].movRight=true;sprites[encontrar('fantom')].speed=0.7;
+sprites[encontrar('fantom')].movRight=true;
 fantom(2,105,110);
-sprites[encontrar('fantom')].movLeft=true;sprites[encontrar('fantom')].speed=.9;
+sprites[encontrar('fantom')].movLeft=true;
 fantom(3,105,110);
-sprites[encontrar('fantom')].movLeft=true;sprites[encontrar('fantom')].speed=1.1;
+sprites[encontrar('fantom')].movLeft=true;
 
 cnv.width = 450;
 cnv.height = 248;
@@ -107,7 +106,7 @@ function fruta(ps, x, y) {//srcY + alt = spritesheet pontos
 }
 function fantom(tp, x, y) {//105,110 saida prisão...
 	sprites.push(new Sprite('images/pacmanTransparente.png', 'fantom', 456, 64+16*tp, 16, 16, x, y));
-	sprites[encontrar('fantom')].speed=0.5;
+	sprites[encontrar('fantom')].speed=0.5 + 0.2*tp;
 	sprites[encontrar('fantom')].cor = tp;
 }
 function power(x,y){

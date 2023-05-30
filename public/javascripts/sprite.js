@@ -259,7 +259,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 								this.movUp = true;
 								//console.log('movUp');
 								if (sprites[j].posX == 108 && sprites[j].posY == 114) {
-									sprites[j].flag = 'remover';
+									sprites[j].flag = 'remover';									
 								}
 								break;
 							case 'd':
