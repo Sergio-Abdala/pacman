@@ -301,6 +301,9 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					this.srcY = 79;					
 				}else{
 					console.log('pacman se fodeu morreu...');
+					GLOBAIS.feedback = 'pacman se fodeu morreu...';
+					voltar();
+					GLOBAIS.pause = true;
 				}
 			}
 		}
@@ -401,6 +404,33 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 						GLOBAIS.fim = false;
 					}, 5000);
 				}, 3000);
+			}
+		}
+		//garantia de que personagens em movimento ñ sairão para fora da tela
+		if (this.flag == 'fantom' || this.flag == 'zoio') {
+			if (this.posX < this.lar*-1) {
+				this.movDown = false;
+				this.movLeft = false;
+				this.movRight = true;
+				this.movUp = false;
+			}
+			if (this.posX > cnv.width/2 + this.lar) {
+				this.movDown = false;
+				this.movLeft = true;
+				this.movRight = false;
+				this.movUp = false;
+			}
+			if (this.posY < this.alt*-1) {
+				this.movDown = true;
+				this.movLeft = false;
+				this.movRight = false;
+				this.movUp = false;
+			}
+			if (this.posY > cnv.height + this.alt) {
+				this.movDown = false;
+				this.movLeft = false;
+				this.movRight = false;
+				this.movUp = true;
 			}
 		}
     }

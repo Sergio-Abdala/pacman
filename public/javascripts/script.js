@@ -12,6 +12,7 @@ var GLOBAIS = {
 	nerfar: false,
 	fim: false,
 	txt: "SCORE : ",
+	feedback: null,
 	contLoop: 0
 }
 
@@ -38,6 +39,10 @@ function loop(){
     ctx.font = "15px Arial";//  TEXTO...
 	ctx.fillStyle = "#fff";
     ctx.fillText(GLOBAIS.txt, cnv.width/2+20, cnv.height/2);
+	if (GLOBAIS.feedback) {
+		ctx.font = "10px Arial";
+		ctx.fillText(GLOBAIS.feedback, cnv.width/2+20, cnv.height-10);
+	}
 	GLOBAIS.contLoop++;
 
 	if (!contar('grao')) {//fim de jogo...
@@ -119,4 +124,9 @@ function power(x,y){
 }
 function libertar(){
 	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 108, 114));sprites[encontrar('ajuste')].direcao = 'u';sprites[encontrar('ajuste')].zoio = 'u';
+}
+function voltar(){
+	while (encontrar('fantom')) {
+		sprites[encontrar('fantom')].flag = 'zoio';
+	}
 }
