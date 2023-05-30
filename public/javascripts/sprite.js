@@ -209,14 +209,9 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				if (this.movDown && this.srcX != 456+this.lar*6 && this.srcX != 456+this.lar*7) {
 					this.srcX = 456+this.lar*6;
 				}
-			}
-			
+			}			
 			//colidir
-			for (let j = 0; j < sprites.length; j++) {
-				//colidir com paredes
-				if (sprites[j].flag == 'parede') {
-					//bloqueando(this, sprites[j]);
-				}
+			for (let j = 0; j < sprites.length; j++) {				
 				//colidir com ajuste
 				if (sprites[j].flag == 'ajuste') {
 					if (colide(this, sprites[j]) && this.ajuste != j) {
@@ -263,6 +258,9 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 							case 'u':
 								this.movUp = true;
 								//console.log('movUp');
+								if (sprites[j].posX == 108 && sprites[j].posY == 114) {
+									sprites[j].flag = 'remover';
+								}
 								break;
 							case 'd':
 								this.movDown = true;
@@ -279,6 +277,60 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 						
 							default:
 								console.log(this.flag +' sem movimento');
+								break;
+						}
+					}
+				}
+			}
+			if (colide(this, sprites[encontrar('player')])) {
+				console.log('colisão '+ this.flag +' player');
+				if (this.srcX > 580) {
+					console.log('pacman comeu');
+					//fantasma vira zoio
+					this.flag = 'zoio';
+					this.srcX = 584;
+					this.srcY = 79;
+				}else{
+					console.log('pacman se fodeu morreu...');
+				}
+			}
+		}
+		if (this.flag == 'zoio') {
+			for (let k = 0; k < sprites.length; k++) {
+				let obj = sprites[k];
+				if (obj.flag == 'ajuste') {
+					if (colide(this, obj)) {///colisão zoio com ajuste
+						switch (obj.zoio) {
+							case 'u':
+								this.movDown = false;
+								this.movLeft = false;
+								this.movRight = false;
+								this.movUp = true;
+								break;
+							case 'd':
+								this.movDown = true;
+								this.movLeft = false;
+								this.movRight = false;
+								this.movUp = false;
+								break;
+							case 'l':
+								this.movDown = false;
+								this.movLeft = true;
+								this.movRight = false;
+								this.movUp = false;
+								break;
+							case 'r':
+								this.movDown = false;
+								this.movLeft = false;
+								this.movRight = true;
+								this.movUp = false;
+								break;
+						
+							default:
+								this.movDown = false;
+								this.movLeft = false;
+								this.movRight = false;
+								this.movUp = false;
 								break;
 						}
 					}
@@ -326,6 +378,17 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 						break;
 				}
 				this.frame++;
+			}
+			if (colide(this, sprites[encontrar('player')])) {//colisão com player
+				this.flag = 'remover';
+				GLOBAIS.nerfar = true;
+				setTimeout(()=>{
+					GLOBAIS.fim = true;
+					setTimeout(() =>{
+						GLOBAIS.nerfar = false;
+						GLOBAIS.fim = false;
+					}, 5000);
+				}, 5000);
 			}
 		}
     }
@@ -432,16 +495,31 @@ function colide(p1, p2){
 	// p1 --> personagem
 	// p2 --> parede bloqueante elemento de interação..
 	//catetos distancia entre os pontos
+	let temp = p1.lar;
+	let temp1 = p1.alt;
+	if (p1.flag == 'power') {
+		p1.lar = p1.lar * p1.escala;
+		p1.alt = p1.alt * p1.escala;
+	}
 	let catx = p1.meiox() - p2.meiox();
 	let caty = p1.meioy() - p2.meioy();
 	//soma das metades
 	let somax = p1.metax() + p2.metax();
 	let somay = p1.metay() + p2.metay();
+	
 	// tocando-se!!!!!!!!!!
 	if (Math.abs(catx) < somax && Math.abs(caty) < somay) {
 		//
+		if (p1.flag == 'power') {
+			p1.lar = temp;
+			p1.alt = temp1;
+		}
 		return true;
 	}else{
+		if (p1.flag == 'power') {
+			p1.lar = temp;
+			p1.alt = temp1;
+		}
 		return false;
 	}
 }

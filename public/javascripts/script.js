@@ -66,19 +66,21 @@ function contar(obj){//descobre quantos objetos com a mesma flag tem em jogo
     return countObj;
 }
 /*******************************************************************************************************/
-ajuste();
+
 paredes(1);
+ajuste();
 graos();
 power(230,10);
+power(130,181);
 
 fantom(0,105,110);
-sprites[encontrar('fantom')].movUp=true;
+sprites[encontrar('fantom')].movRight=true;
 fantom(1,105,110);
-sprites[encontrar('fantom')].movUp=true;sprites[encontrar('fantom')].speed=0.7;
+sprites[encontrar('fantom')].movRight=true;sprites[encontrar('fantom')].speed=0.7;
 fantom(2,105,110);
-sprites[encontrar('fantom')].movUp=true;sprites[encontrar('fantom')].speed=.9;
+sprites[encontrar('fantom')].movLeft=true;sprites[encontrar('fantom')].speed=.9;
 fantom(3,105,110);
-sprites[encontrar('fantom')].movUp=true;sprites[encontrar('fantom')].speed=1.1;
+sprites[encontrar('fantom')].movLeft=true;sprites[encontrar('fantom')].speed=1.1;
 
 cnv.width = 450;
 cnv.height = 248;
@@ -112,4 +114,7 @@ function power(x,y){
     sprites.push(new Sprite('images/coinsTransparente.png', 'power', 34, 16, 50, 50, x, y));
 	sprites[encontrar('power')].escala=.2;
 	console.log('power');
+}
+function libertar(){
+	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 108, 114));sprites[encontrar('ajuste')].direcao = 'u';sprites[encontrar('ajuste')].zoio = 'u';
 }
