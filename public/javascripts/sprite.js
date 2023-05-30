@@ -475,11 +475,11 @@ function bloqueando(p1, p2){//(personagem, objeto)
 			if (caty > 0) { // bateu a cabeça do personagem colidiu parte de cima do personagem que esta sendo controlado
 				p1.posY += overlapy;
 				//
-				console.log(p1.flag +' bateu cabeça: '+ p2.flag);
+				//console.log(p1.flag +' bateu cabeça: '+ p2.flag);
 			} else {
 				p1.posY -= overlapy;
 				//
-				console.log(p1.flag +' esta pisando: '+ p2.flag);
+				//console.log(p1.flag +' esta pisando: '+ p2.flag);
 			}			
 		} else { // colisão pelos lados esquerda ou direita
 			this.metaHorizontal = this.metaVertical = null;
@@ -491,11 +491,11 @@ function bloqueando(p1, p2){//(personagem, objeto)
 			if(catx > 0){ // colidiu na esquerda
 				p1.posX += overlapx;
 				//
-				console.log(p1.flag +' bateu à esquerda: '+ p2.flag);
+				//console.log(p1.flag +' bateu à esquerda: '+ p2.flag);
 			}else{
 				p1.posX -= overlapx;
 				//
-				console.log(p1.flag +' bateu à direita: '+ p2.flag);
+				//console.log(p1.flag +' bateu à direita: '+ p2.flag);
 			}
 		}
 	}
