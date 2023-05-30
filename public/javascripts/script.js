@@ -29,8 +29,7 @@ function loop(){
 		sprites[i].render();/////////////// renderiza na tela...
 	}
 	//for secundario para remover obj depois de renderizar
-    for (let k = 0 ; k < sprites.length; k++) {//percorre array de sprites
-        
+    for (let k = 0 ; k < sprites.length; k++) {//percorre array de sprites        
         if (sprites[k].flag == 'remover') {
             sprites.splice(k, 1);//eliminar do array
         }
@@ -46,10 +45,9 @@ function loop(){
 	GLOBAIS.contLoop++;
 
 	if (!contar('grao')) {//fim de jogo...
-		GLOBAIS.txt = 'FIM DE JOGO... ';
+		GLOBAIS.txt = 'VOCÊ VENCEU... ';
 		GLOBAIS.gameOver = true;
 	}
-
 
 	requestAnimationFrame(loop, "canvas");
 }
