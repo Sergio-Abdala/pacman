@@ -13,27 +13,63 @@ var GLOBAIS = {
 	fim: false,
 	txt: "SCORE : ",
 	feedback: null,
+	status: null,
+	adv: true,
 	contLoop: 0
 }
 
 //************************************************************************************************ */
-function loop(){
-    
+function loop(){ 	
     // limpar tela
 	ctx.clearRect(0,0,cnv.width,cnv.height);
 	for (let i = 0 ; i < sprites.length; i++) {//percorre array de sprites
-
 		if (!GLOBAIS.pause && !GLOBAIS.gameOver) {/////////////
 			sprites[i].exe();/////////////////  movimento do jogo...            
 		}////////////////////////////////////
 		sprites[i].render();/////////////// renderiza na tela...
 	}
-	//for secundario para remover obj depois de renderizar
+	//for secundario para remover obj depois de renderizar e animar obj quando game estiver em pause
     for (let k = 0 ; k < sprites.length; k++) {//percorre array de sprites        
         if (sprites[k].flag == 'remover') {
             sprites.splice(k, 1);//eliminar do array
-        }
+        }		
     }
+	//animar obj em pause 
+	if (GLOBAIS.status) {
+		switch (GLOBAIS.status) {
+			case 'morrendo':
+				GLOBAIS.feedback = 'pacman esta morrendo...';
+				if (sprites[encontrar('player')].srcY < 220) {
+					sprites[encontrar('player')].srcY = 247;
+				}
+				if (!(GLOBAIS.contLoop%15)) {
+					//animação do pacman morrendo mudar frame depois voltar status a null
+					sprites[encontrar('player')].srcX = 458 + 17*sprites[encontrar('player')].frame;
+					console.log('frame '+ sprites[encontrar('player')].frame);
+					if (sprites[encontrar('player')].frame > 10) {
+						GLOBAIS.status = false;						
+						GLOBAIS.pause = true;
+						sprites[encontrar('player')].srcY = 144;
+						sprites[encontrar('player')].srcX = 488;
+						sprites[encontrar('player')].posX = 104;
+						sprites[encontrar('player')].posY = 181;
+						sprites[encontrar('player')].frame=0;
+						if (GLOBAIS.vida) {
+							GLOBAIS.gameOver=false;
+							GLOBAIS.vida--;
+						}else{
+							GLOBAIS.txt = 'FIM DE JOGO '+ GLOBAIS.pontos;
+						}
+					}else{
+						sprites[encontrar('player')].frame++;
+					}
+				}
+				break;
+		
+			default:
+				break;
+		}
+	}
 	//GLOBAIS.txt = "texto... ";
     ctx.font = "15px Arial";//  TEXTO...
 	ctx.fillStyle = "#fff";
@@ -43,10 +79,15 @@ function loop(){
 		ctx.fillText(GLOBAIS.feedback, cnv.width/2+20, cnv.height-10);
 	}
 	GLOBAIS.contLoop++;
-
 	if (!contar('grao')) {//fim de jogo...
 		GLOBAIS.txt = 'VOCÊ VENCEU... ';
 		GLOBAIS.gameOver = true;
+	}
+	//aciona habeas corpus apenas uma vez....
+	if(GLOBAIS.pontos && GLOBAIS.adv){
+		console.log('adv ok');
+		GLOBAIS.adv = false;
+		habeascorpus(2000);
 	}
 
 	requestAnimationFrame(loop, "canvas");
@@ -78,15 +119,12 @@ power(206,14);
 power(6,215);
 power(206,215);
 
-fantom(0,105,110);
-sprites[encontrar('fantom')].movRight=true;
-fantom(1,105,110);
-sprites[encontrar('fantom')].movRight=true;
-fantom(2,105,110);
-sprites[encontrar('fantom')].movLeft=true;
-fantom(3,105,110);
-sprites[encontrar('fantom')].movLeft=true;
-habeascorpus(2000);
+fantom(0,105,110);sprites[encontrar('fantom')].movRight=true;
+fantom(1,105,110);sprites[encontrar('fantom')].movRight=true;
+fantom(2,105,110);sprites[encontrar('fantom')].movLeft=true;
+fantom(3,105,110);sprites[encontrar('fantom')].movLeft=true;
+
+vida();
 
 cnv.width = 450;
 cnv.height = 248;
@@ -122,7 +160,7 @@ function power(x,y){
 	console.log('power');
 }
 function libertar(){
-	sprites.push(new Sprite('images/pacman.png', 'ajuste', 500, 200, 7, 7, 108, 114));sprites[encontrar('ajuste')].direcao = 'u';sprites[encontrar('ajuste')].zoio = 'u';
+	sprites.push(new Sprite('images/pacmanTransparente.png', 'ajuste', 500, 200, 7, 7, 108, 114));sprites[encontrar('ajuste')].direcao = 'u';sprites[encontrar('ajuste')].zoio = 'u';
 }
 function voltar(){
 	while (encontrar('fantom')) {
@@ -138,4 +176,10 @@ function habeascorpus(t) {
 		t += 4000;
 		habeascorpus(t);
 	}, t);
+}
+function vida(){
+	for (let k = 0; k < GLOBAIS.vida; k++) {
+		sprites.push(new Sprite('images/pacmanTransparente.png', 'vida', 508, 200, 8, 7, 250+8*k, 130));
+		
+	}
 }

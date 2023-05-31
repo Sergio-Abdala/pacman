@@ -73,11 +73,13 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					}					
 				}
 				//animação
-				if (this.srcX == 472) {
-					this.srcX = 456;
-				}else{
-					this.srcX = 472;
-				}
+				if (!GLOBAIS.status) {
+					if (this.srcX == 472) {
+						this.srcX = 456;
+					}else{
+						this.srcX = 472;
+					}
+				}				
 			}
 		}
 		//parede
@@ -300,10 +302,11 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					this.srcX = 584;
 					this.srcY = 79;					
 				}else{
-					console.log('pacman se fodeu morreu...');
+					//console.log('pacman se fodeu morreu...');
 					GLOBAIS.feedback = 'pacman se fodeu morreu...';
 					voltar();
-					GLOBAIS.pause = true;
+					GLOBAIS.gameOver = true;
+					GLOBAIS.status = 'morrendo';
 				}
 			}
 		}
