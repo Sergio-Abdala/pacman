@@ -285,8 +285,8 @@ function rank(n) {
 			let esp;
 			(pos < 10) ? esp = ' ' : esp = '';
 			
-			ctx.fillText(pos+'º st '+esp+ getCookie('nome'+i).substring(0, 8).toUpperCase(), cnv.width/2+4 + 120*col, 25+15*i-lin-z);
-			ctx.fillText(getCookie(pos+'ST'), cnv.width/2+4 + 80 + 120*col, 25+15*i-lin-z);
+			ctx.fillText(pos+'º st '+esp+ getCookie('nome'+i).substring(0, 8).toUpperCase(), cnv.width/2+2 + 120*col, 25+15*i-lin-z);
+			ctx.fillText(getCookie(pos+'ST'), cnv.width/2+6 + 80 + 115*col, 25+15*i-lin-z);
 			//
 		}else{
 			ctx.fillText(pos+'º st VAZIO 000', cnv.width/2+4 + 120*col, 25+15*i-lin-z);
