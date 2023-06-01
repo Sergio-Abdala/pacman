@@ -405,8 +405,8 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					setTimeout(() =>{
 						GLOBAIS.nerfar = false;
 						GLOBAIS.fim = false;
-					}, 5000);
-				}, 3000);
+					}, 3000);
+				}, 5000);
 			}
 		}
 		//garantia de que personagens em movimento ñ sairão para fora da tela

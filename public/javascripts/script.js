@@ -3,7 +3,7 @@ var ctx = cnv.getContext('2d');
 //GLOBAIS VARIAVEIS.
 var sprites = new Array();
 
-var GLOBAIS = { /* FALTA GANHAR VIDAS E INSERIR FRUTAS...??? */
+var GLOBAIS = { /* FALTA GANHAR VIDAS E SAIDAS LATERAIS DO LABERINTO TELE TRANSPORTE...??? */
     vida: 3,
     pontos: 0,
 	somar: 0,
@@ -14,6 +14,7 @@ var GLOBAIS = { /* FALTA GANHAR VIDAS E INSERIR FRUTAS...??? */
 	txt: "SCORE : ",
 	feedback: null,
 	status: null,
+	fruta: 0,
 	adv: true,
 	qts: 12,//quantas posições aparecem no rank...
 	contLoop: 0
@@ -29,7 +30,7 @@ function loop(){
 		}////////////////////////////////////
 		sprites[i].render();/////////////// renderiza na tela...
 	}
-	//for secundario para remover obj depois de renderizar e animar obj quando game estiver em pause
+	//for secundario para remover obj depois de renderizar
     for (let k = 0 ; k < sprites.length; k++) {//percorre array de sprites        
         if (sprites[k].flag == 'remover') {
             sprites.splice(k, 1);//eliminar do array
@@ -178,6 +179,10 @@ function habeascorpus(t) {
 	}
 	setTimeout(()=>{
 		libertar(); console.log('liberdade!!! ==> '+ t);
+		if (!contar('fruta')) {
+			fruta(GLOBAIS.fruta, 104,131);
+			(GLOBAIS.fruta < 7) ? GLOBAIS.fruta++ : GLOBAIS.fruta = 0;
+		}		
 		t += 4000;
 		habeascorpus(t);
 	}, t);
