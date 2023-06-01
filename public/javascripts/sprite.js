@@ -178,7 +178,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				}
 			}
 		}
-		if (GLOBAIS.somar) {
+		if (GLOBAIS.somar) {//faz a soma aos pontos
 			GLOBAIS.pontos++;
 			GLOBAIS.somar--;
 			GLOBAIS.txt = 'SCORE: '+ GLOBAIS.pontos;
@@ -189,8 +189,8 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				GLOBAIS.feedback = 'vida extra '+GLOBAIS.vida;
 			}
 		}
-		if (this.flag == 'fantom') {
-			if (!(GLOBAIS.contLoop % 10)) {
+		if (this.flag == 'fantom') {//falta fazer a ia dos fantom???
+			if (!(GLOBAIS.contLoop % 10)) {//frequencia da animação
 				if(this.frame ){
 					this.frame=0;this.srcX -= this.lar;
 				}else{
@@ -225,7 +225,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				}				
 							
 			}else{//fantasma normal
-				this.speed = this.memoVelo;//nerfar velocidade
+				this.speed = this.memoVelo;//voltar ao normal a velocidade
 				this.srcY = 64+16*this.cor;
 				if (this.movRight && this.srcX != 456 && this.srcX != 456+this.lar) {
 					this.srcX = 456;
@@ -312,7 +312,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					}
 				}
 			}
-			if (colide(this, sprites[encontrar('player')])) {
+			if (colide(this, sprites[encontrar('player')])) {//colidir com player
 				console.log('colisão '+ this.flag +' player');
 				if (this.srcX > 580) {
 					console.log('pacman comeu');
@@ -330,6 +330,9 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					GLOBAIS.status = 'morrendo';
 				}
 			}
+			/*/ ia dos fantom **********************************************/
+			//saber onde esta o player???
+			//avaliar direção a ser tomada com relação ao posicionamento posX, posY do player escolher entre opções de ajuste
 		}
 		if (this.flag == 'zoio') {
 			if (this.posX > 87 && this.posX < 136 && this.posY > 97 && this.posY < 128 && !GLOBAIS.nerfar) {
