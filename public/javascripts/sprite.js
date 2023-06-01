@@ -81,6 +81,12 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					}
 				}				
 			}
+			if (this.posX < 0) {
+				this.posX = 210;
+			}
+			if (this.posX > 210) {
+				this.posX = 0;
+			}
 		}
 		//parede
 		if (this.flag == 'parede') {

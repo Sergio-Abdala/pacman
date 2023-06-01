@@ -3,7 +3,7 @@ var ctx = cnv.getContext('2d');
 //GLOBAIS VARIAVEIS.
 var sprites = new Array();
 
-var GLOBAIS = { /* FALTA GANHAR VIDAS E SAIDAS LATERAIS DO LABERINTO TELE TRANSPORTE...??? */
+var GLOBAIS = { /* FALTA GANHAR VIDAS...??? */
     vida: 3,
     pontos: 0,
 	somar: 0,
