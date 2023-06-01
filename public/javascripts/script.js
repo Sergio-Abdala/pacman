@@ -3,7 +3,7 @@ var ctx = cnv.getContext('2d');
 //GLOBAIS VARIAVEIS.
 var sprites = new Array();
 
-var GLOBAIS = { /* FALTA GANHAR VIDAS...??? */
+var GLOBAIS = {
     vida: 3,
     pontos: 0,
 	somar: 0,

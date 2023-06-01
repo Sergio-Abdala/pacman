@@ -197,7 +197,12 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					this.frame=1;this.srcX += this.lar;
 				}
 			}
-			this.memoVelo = this.speed;
+			if (this.memoVelo) {
+				
+			}else{
+				this.memoVelo = this.speed;
+			}
+			
 			if (GLOBAIS.nerfar) {//fantasma nerfado
 				this.srcY = 64;
 				//nerfar velocidade fantom				
