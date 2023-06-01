@@ -4,7 +4,7 @@ var ctx = cnv.getContext('2d');
 var sprites = new Array();
 
 var GLOBAIS = {
-    vida: 3,
+    vida: 1,
     pontos: 0,
 	somar: 0,
 	pause: false,
@@ -15,6 +15,7 @@ var GLOBAIS = {
 	feedback: null,
 	status: null,
 	adv: true,
+	qts: 12,//quantas posições aparecem no rank...
 	contLoop: 0
 }
 
@@ -57,8 +58,10 @@ function loop(){
 						if (GLOBAIS.vida) {
 							GLOBAIS.gameOver=false;
 							GLOBAIS.vida--;
+							sprites[encontrar('vida')].flag = 'remover';
 						}else{
 							GLOBAIS.txt = 'FIM DE JOGO '+ GLOBAIS.pontos;
+							endGame();
 						}
 					}else{
 						sprites[encontrar('player')].frame++;
@@ -78,10 +81,12 @@ function loop(){
 		ctx.font = "10px Arial";
 		ctx.fillText(GLOBAIS.feedback, cnv.width/2+20, cnv.height-10);
 	}
+	rank(GLOBAIS.qts);
 	GLOBAIS.contLoop++;
 	if (!contar('grao')) {//fim de jogo...
 		GLOBAIS.txt = 'VOCÊ VENCEU... ';
-		GLOBAIS.gameOver = true;
+		//GLOBAIS.gameOver = true;
+		restart();
 	}
 	//aciona habeas corpus apenas uma vez....
 	if(GLOBAIS.pontos && GLOBAIS.adv){
@@ -182,4 +187,107 @@ function vida(){
 		sprites.push(new Sprite('images/pacmanTransparente.png', 'vida', 508, 200, 8, 7, 250+8*k, 130));
 		
 	}
+}
+function setCookie(cname, cvalue, exdays) {
+	const d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	let expires = "expires="+ d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+	let name = cname + "=";
+	let decodedCookie = decodeURIComponent(document.cookie);
+	let ca = decodedCookie.split(';');
+	for(let i = 0; i <ca.length; i++) {
+	  let c = ca[i];
+	  while (c.charAt(0) == ' ') {
+		c = c.substring(1);
+	  }
+	  if (c.indexOf(name) == 0) {
+		return c.substring(name.length, c.length);
+	  }
+	}
+	return "";
+}
+function deleteCokie(cname){
+	document.cookie = cname+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+function endGame() {
+	//
+	let cont = 0;
+	let ptemp = false;
+	let ntemp = false;
+	do {
+		if (getCookie(cont+1+'ST')) {	console.log('existe a posição '+cont+1+' => '+ getCookie(cont+1+'ST'));
+			//este registro é menor que GLOBAIS.pontos
+			if (parseInt(getCookie(cont+1+'ST')) < GLOBAIS.pontos && !ptemp && !ntemp) { console.log('e menor que '+ GLOBAIS.pontos);
+				ptemp = getCookie(cont+1+'ST');
+				ntemp = getCookie('nome'+cont);
+				setCookie(cont+1+'ST',GLOBAIS.pontos, 3650);
+				setCookie('nome'+cont,prompt('digite seu nome...'), 3650);
+			}
+			//avaliar oq tem nos temporarios
+			if (ptemp && ntemp) {
+				//avaliar se temporario é maior que atual
+				if(ptemp > parseInt(getCookie(cont+1+'ST'))){
+					
+					let pt = getCookie(cont+1+'ST');
+					let nt = getCookie('nome'+cont);
+					setCookie(cont+1+'ST',ptemp, 3650);
+					setCookie('nome'+cont,ntemp, 3650);
+					ptemp = pt;
+					ntemp = nt;
+				}		
+			}
+		}else{
+			setCookie(cont+1+'ST',GLOBAIS.pontos, 3650);
+			setCookie('nome'+cont,prompt('digite seu nome...'), 3650);
+		}
+		cont++;
+	} while (getCookie(cont+1+'ST') && getCookie('nome'+cont));
+	//novo registro
+	if (ptemp && ntemp) { console.log('novo registro');
+		setCookie(cont+1+'ST',ptemp, 3650);
+		setCookie('nome'+cont,ntemp, 3650);
+	}else{
+		setCookie(cont+1+'ST',GLOBAIS.pontos, 3650);
+		setCookie('nome'+cont,prompt('digite seu nome...'), 3650);
+	}
+}
+function rank(n) {
+	for (let i = 0; i < n; i++) {
+		//
+		let pos = i+1;
+		let col = 0;
+		let lin = 0;
+		let z = 0;
+		if (i > 4) {
+			col = 1;
+			lin = 75;
+			ctx.font = "9px Arial";
+			z = (i-5)*5;
+		}else{
+			ctx.font = "10px Arial";
+		}
+		if (getCookie(pos+'ST') && getCookie('nome'+i)) {
+			let esp;
+			(pos < 10) ? esp = '  ' : esp = '';
+			
+			ctx.fillText(pos+'º '+esp+ getCookie('nome'+i).substring(0, 8).toUpperCase(), cnv.width/2+4 + 120*col, 25+15*i-lin-z);
+			ctx.fillText(getCookie(pos+'ST'), cnv.width/2+4 + 80 + 120*col, 25+15*i-lin-z);
+			//
+		}else{
+			ctx.fillText(pos+'ST VAZIO 000', cnv.width/2+4 + 120*col, 25+15*i-lin-z);
+		}
+	}
+}
+function restart(){
+	graos();
+	power(6,14);
+	power(206,14);
+	power(6,215);
+	power(206,215);
+	sprites[encontrar('player')].posX = 104;
+	sprites[encontrar('player')].posY = 181;
+	voltar();
 }
