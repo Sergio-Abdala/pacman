@@ -94,7 +94,7 @@ function loop(){
 		console.log('adv ok');
 		GLOBAIS.adv = false;
 		habeascorpus(2000);
-	}
+	}	
 
 	requestAnimationFrame(loop, "canvas");
 }
@@ -192,6 +192,10 @@ function vida(){
 		sprites.push(new Sprite('images/pacmanTransparente.png', 'vida', 508, 200, 8, 7, 250+8*k, 130));
 		
 	}
+}
+function addVida(){
+	sprites.push(new Sprite('images/pacmanTransparente.png', 'vida', 508, 200, 8, 7, 250+8*GLOBAIS.vida, 130));
+	
 }
 function setCookie(cname, cvalue, exdays) {
 	const d = new Date();

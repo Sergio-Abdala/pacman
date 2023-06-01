@@ -182,6 +182,11 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			GLOBAIS.pontos++;
 			GLOBAIS.somar--;
 			GLOBAIS.txt = 'SCORE: '+ GLOBAIS.pontos;
+			//vida extra...
+			if (!(GLOBAIS.pontos%5000)) { alert('ganhou vida');
+				addVida();
+				GLOBAIS.vida++;						
+			}
 		}
 		if (this.flag == 'fantom') {
 			if (!(GLOBAIS.contLoop % 10)) {
