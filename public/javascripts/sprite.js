@@ -196,8 +196,11 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					this.frame=1;this.srcX += this.lar;
 				}
 			}
+			this.memoVelo = this.speed;
 			if (GLOBAIS.nerfar) {//fantasma nerfado
 				this.srcY = 64;
+				//nerfar velocidade fantom				
+				this.speed = .5;
 				if (GLOBAIS.fim) {
 					//alternando cor fim do nerf
 					if (this.frame) {
@@ -216,6 +219,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				}				
 							
 			}else{//fantasma normal
+				this.speed = this.memoVelo;//nerfar velocidade
 				this.srcY = 64+16*this.cor;
 				if (this.movRight && this.srcX != 456 && this.srcX != 456+this.lar) {
 					this.srcX = 456;
