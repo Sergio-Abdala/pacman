@@ -40,7 +40,7 @@ function loop(){
 	if (GLOBAIS.status) {
 		switch (GLOBAIS.status) {
 			case 'morrendo':
-				GLOBAIS.feedback = 'pacman esta morrendo...';
+				//GLOBAIS.feedback = 'pacman esta morrendo...';
 				if (sprites[encontrar('player')].srcY < 220) {
 					sprites[encontrar('player')].srcY = 247;
 				}
@@ -88,6 +88,9 @@ function loop(){
 		GLOBAIS.txt = 'VOCÊ VENCEU... ';
 		GLOBAIS.pause = true;
 		restart();
+		addVida();
+		GLOBAIS.vida++;
+		GLOBAIS.feedback = 'ganhou vida extra... vidas = '+GLOBAIS.vida;
 	}
 	//aciona habeas corpus apenas uma vez....
 	if(GLOBAIS.pontos && GLOBAIS.adv){
@@ -299,4 +302,5 @@ function restart(){
 	sprites[encontrar('player')].posX = 104;
 	sprites[encontrar('player')].posY = 181;
 	voltar();
+	GLOBAIS.nerfar = false;
 }
