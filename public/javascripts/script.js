@@ -4,7 +4,7 @@ var ctx = cnv.getContext('2d');
 var sprites = new Array();
 
 var GLOBAIS = {
-    vida: 1,
+    vida: 3,
     pontos: 0,
 	somar: 0,
 	pause: false,
@@ -85,7 +85,7 @@ function loop(){
 	GLOBAIS.contLoop++;
 	if (!contar('grao')) {//fim de jogo...
 		GLOBAIS.txt = 'VOCÊ VENCEU... ';
-		//GLOBAIS.gameOver = true;
+		GLOBAIS.pause = true;
 		restart();
 	}
 	//aciona habeas corpus apenas uma vez....
@@ -271,13 +271,13 @@ function rank(n) {
 		}
 		if (getCookie(pos+'ST') && getCookie('nome'+i)) {
 			let esp;
-			(pos < 10) ? esp = '  ' : esp = '';
+			(pos < 10) ? esp = ' ' : esp = '';
 			
-			ctx.fillText(pos+'º '+esp+ getCookie('nome'+i).substring(0, 8).toUpperCase(), cnv.width/2+4 + 120*col, 25+15*i-lin-z);
+			ctx.fillText(pos+'º st '+esp+ getCookie('nome'+i).substring(0, 8).toUpperCase(), cnv.width/2+4 + 120*col, 25+15*i-lin-z);
 			ctx.fillText(getCookie(pos+'ST'), cnv.width/2+4 + 80 + 120*col, 25+15*i-lin-z);
 			//
 		}else{
-			ctx.fillText(pos+'ST VAZIO 000', cnv.width/2+4 + 120*col, 25+15*i-lin-z);
+			ctx.fillText(pos+'º st VAZIO 000', cnv.width/2+4 + 120*col, 25+15*i-lin-z);
 		}
 	}
 }
