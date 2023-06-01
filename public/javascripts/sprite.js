@@ -316,7 +316,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				console.log('colisão '+ this.flag +' player');
 				if (this.srcX > 580) {
 					console.log('pacman comeu');
-					//??? inserir pontos do fantasma comido
+					// inserir pontos do fantasma comido
 					sprites.push(new Sprite('images/pacmanTransparente.png', 'pontos', 456+16*contar('zoio'), 64+16*4, 16, 16, this.posX, this.posY));
 					//fantasma vira zoio
 					this.flag = 'zoio';
@@ -491,7 +491,7 @@ function bloqueando(p1, p2){//(personagem, objeto)
 		if (overlapx >= overlapy) { //colisão por cima ou por baixo
 			this.metaHorizontal = this.metaVertical = null;
 			p1.movUp = p1.movDown = p1.movLeft = p1.movRight = false;
-			//fantom tem que escolher entre esquerda e direita???
+			//fantom tem que escolher entre esquerda e direita
 			if (p1.flag == 'fantom') {
 				//(GLOBAIS.contLoop%2) ? p1.movRight = true : p1.movLeft = true;
 
@@ -508,7 +508,7 @@ function bloqueando(p1, p2){//(personagem, objeto)
 		} else { // colisão pelos lados esquerda ou direita
 			this.metaHorizontal = this.metaVertical = null;
 			p1.movUp = p1.movDown = p1.movLeft = p1.movRight = false;
-			//fantom tem que escolher entre subir ou descer???
+			//fantom tem que escolher entre subir ou descer
 			if (p1.flag == 'fantom') {
 				//(GLOBAIS.contLoop%2) ? p1.movUp = true : p1.movDown = true;
 			}
