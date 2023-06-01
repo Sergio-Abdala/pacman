@@ -183,7 +183,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			GLOBAIS.somar--;
 			GLOBAIS.txt = 'SCORE: '+ GLOBAIS.pontos;
 			//vida extra...
-			if (!(GLOBAIS.pontos%5000)) { alert('ganhou vida');
+			if (!(GLOBAIS.pontos%5000)) {
 				addVida();
 				GLOBAIS.vida++;						
 			}
