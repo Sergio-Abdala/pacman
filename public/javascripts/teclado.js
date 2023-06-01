@@ -35,6 +35,34 @@ function keydownHandler(e){
 			sprites[encontrar('player')].movDown = true;
 			GLOBAIS.pause = false;
 		break;
+		case 68:
+			sprites[encontrar('player')].movRight = true;
+			sprites[encontrar('player')].movLeft = false;
+			//sprites[encontrar('player')].movUp = false;
+			//sprites[encontrar('player')].movDown = false;
+			GLOBAIS.pause = false;
+		break;
+			case 65:
+			sprites[encontrar('player')].movRight = false;
+			sprites[encontrar('player')].movLeft = true;
+			//sprites[encontrar('player')].movUp = false;
+			//sprites[encontrar('player')].movDown = false;
+			GLOBAIS.pause = false;
+		break;
+			case 87:
+			//sprites[1].movRight = false;
+			//sprites[1].movLeft = false;
+			sprites[encontrar('player')].movUp = true;
+			sprites[encontrar('player')].movDown = false;
+			GLOBAIS.pause = false;
+			break;
+		case 83:
+			//sprites[1].movRight = false;
+			//sprites[1].movLeft = false;
+			sprites[encontrar('player')].movUp = false;
+			sprites[encontrar('player')].movDown = true;
+			GLOBAIS.pause = false;
+			break;
 	}
 }
 function keyupHandler(e){
@@ -98,6 +126,12 @@ function keyupHandler(e){
 		case 57: // 9 numero...
 			console.log('numero 9 <==> teclado...' );
 			break;
+		case 65://letra a
+			sprites[encontrar('player')].movLeft = false;
+			break;
+		case 68://letra d
+		sprites[encontrar('player')].movRight = false;
+			break;
 		case 72: // h letra...
 			console.log('letra h <==> teclado...' );
 			window.open("/help");
@@ -111,6 +145,12 @@ function keyupHandler(e){
 		case 80: // p letra...
 			console.log('letra p <==> teclado...');
 			GLOBAIS.pause ? GLOBAIS.pause = false : GLOBAIS.pause = true;
+			break;
+		case 83://letra s
+			sprites[encontrar('player')].movUp = false;
+			break;
+		case 87://letra w
+			sprites[encontrar('player')].movUp = false;
 			break;
 
 		default:
