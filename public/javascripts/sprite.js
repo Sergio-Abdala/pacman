@@ -319,7 +319,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					this.srcY = 79;					
 				}else{
 					//console.log('pacman se fodeu morreu...');
-					GLOBAIS.feedback = 'pacman se fodeu morreu...';
+					GLOBAIS.feedback = 'pacman morreu...';
 					voltar();
 					GLOBAIS.gameOver = true;
 					GLOBAIS.status = 'morrendo';
