@@ -190,7 +190,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				GLOBAIS.feedback = 'vida extra '+GLOBAIS.vida;
 			}
 		}
-		if (this.flag == 'fantom') {//falta fazer a ia dos fantom???
+		if (this.flag == 'fantom') {
 			if (!(GLOBAIS.contLoop % 10)) {//frequencia da animação
 				if(this.frame ){
 					this.frame=0;this.srcX -= this.lar;
@@ -289,29 +289,44 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 						let ir = arr[sort.toFixed(0)];
 
 						/*/ ia dos fantom **********************************************/
-						//saber onde esta o player???
 						//avaliar direção a ser tomada com relação ao posicionamento posX, posY do player escolher entre opções de ajuste
-						if(this.ia){
-							if (sprites[encontrar('player')].posX > this.posX) {
-								//player esta a direita
-								if (arr.indexOf('r') >= 0) {//tem a opção para seguir player
-									ir = arr.indexOf('r');
+						if(this.ia){//identificar qual maior distancia entre lados e altura???
+							
+							let horizontal = sprites[encontrar('player')].posX - this.posX;
+							let vertical = sprites[encontrar('player')].posY - this.posY;
+							(horizontal < 0) ? horizontal *= -1 : horizontal;
+							(vertical < 0) ? vertical *= -1 : vertical;
+							if (horizontal > vertical) {
+								if (sprites[encontrar('player')].posX > this.posX) {
+									//player esta a direita
+									if (arr.indexOf('r') >= 0) {//tem a opção para seguir player
+										ir = arr[arr.indexOf('r')];
+									}else{
+										ir = arr[sort.toFixed(0)];
+									}
+								}else{
+									//player esta a esquerda
+									if (arr.indexOf('l') >= 0) {//tem a opção para seguir player
+										ir = arr[arr.indexOf('l')];
+									}else{
+										ir = arr[sort.toFixed(0)];
+									}
 								}
 							}else{
-								//player esta a esquerda
-								if (arr.indexOf('l') >= 0) {//tem a opção para seguir player
-									ir = arr.indexOf('l');
-								}
-							}
-							if (sprites[encontrar('player')].posY > this.posY) {
-								//player esta abaixo
-								if (arr.indexOf('d') >= 0) {//tem a opção para seguir player
-									ir = arr.indexOf('d');
-								}
-							}else{
-								//player esta acima
-								if (arr.indexOf('u') >= 0) {//tem a opção para seguir player
-									ir = arr.indexOf('u');
+								if (sprites[encontrar('player')].posY > this.posY) {
+									//player esta abaixo
+									if (arr.indexOf('d') >= 0) {//tem a opção para seguir player
+										ir = arr[arr.indexOf('d')];
+									}else{
+										ir = arr[sort.toFixed(0)];
+									}
+								}else{
+									//player esta acima
+									if (arr.indexOf('u') >= 0) {//tem a opção para seguir player
+										ir = arr[arr.indexOf('u')];
+									}else{
+										ir = arr[sort.toFixed(0)];
+									}
 								}
 							}
 						}
