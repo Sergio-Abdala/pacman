@@ -15,6 +15,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 		this.movDown = false;
 		this.speed = 1;
         this.flag = flag;
+		this.ia = false;
 		this.frame = 0;
     //metodos..............................
     this.render = function(){//renderizar em tela...
@@ -285,7 +286,37 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 						let arr = sprites[j].direcao.split(",");//array com direções posiveis
 						let sort = Math.random() * (arr.length-1);
 						//console.log('sort : '+ sort.toFixed(0));
-						switch (arr[sort.toFixed(0)]) {//GLOBAIS.contLoop%arr.length
+						let ir = arr[sort.toFixed(0)];
+
+						/*/ ia dos fantom **********************************************/
+						//saber onde esta o player???
+						//avaliar direção a ser tomada com relação ao posicionamento posX, posY do player escolher entre opções de ajuste
+						if(this.ia){
+							if (sprites[encontrar('player')].posX > this.posX) {
+								//player esta a direita
+								if (arr.indexOf('r') >= 0) {//tem a opção para seguir player
+									ir = arr.indexOf('r');
+								}
+							}else{
+								//player esta a esquerda
+								if (arr.indexOf('l') >= 0) {//tem a opção para seguir player
+									ir = arr.indexOf('l');
+								}
+							}
+							if (sprites[encontrar('player')].posY > this.posY) {
+								//player esta abaixo
+								if (arr.indexOf('d') >= 0) {//tem a opção para seguir player
+									ir = arr.indexOf('d');
+								}
+							}else{
+								//player esta acima
+								if (arr.indexOf('u') >= 0) {//tem a opção para seguir player
+									ir = arr.indexOf('u');
+								}
+							}
+						}
+
+						switch (ir) {//GLOBAIS.contLoop%arr.length
 							case 'u':
 								this.movUp = true;
 								//console.log('movUp');
@@ -309,20 +340,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 							default:
 								console.log(this.flag +' sem movimento');
 								break;
-						}
-						/*/ ia dos fantom **********************************************/
-						//saber onde esta o player???
-						//avaliar direção a ser tomada com relação ao posicionamento posX, posY do player escolher entre opções de ajuste
-						if (sprites[encontrar('player')].posX > this.posX) {
-							//player esta a direita
-						}else{
-							//player esta a esquerda
-						}
-						if (sprites[encontrar('player')].posY > this.posY) {
-							//player esta abaixo
-						}else{
-							//player esta acima
-						}
+						}						
 					}
 				}
 			}
