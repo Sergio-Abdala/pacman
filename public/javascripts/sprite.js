@@ -282,7 +282,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					if (this.ajuste == j && !this.movUp && !this.movDown && !this.movLeft && !this.movRight) {
 						//decidir direção sorteando
 						//console.log('decidir direção '+ sprites[j].direcao +' contLoop: '+ GLOBAIS.contLoop);
-						let arr = sprites[j].direcao.split(",");
+						let arr = sprites[j].direcao.split(",");//array com direções posiveis
 						let sort = Math.random() * (arr.length-1);
 						//console.log('sort : '+ sort.toFixed(0));
 						switch (arr[sort.toFixed(0)]) {//GLOBAIS.contLoop%arr.length
@@ -313,6 +313,16 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 						/*/ ia dos fantom **********************************************/
 						//saber onde esta o player???
 						//avaliar direção a ser tomada com relação ao posicionamento posX, posY do player escolher entre opções de ajuste
+						if (sprites[encontrar('player')].posX > this.posX) {
+							//player esta a direita
+						}else{
+							//player esta a esquerda
+						}
+						if (sprites[encontrar('player')].posY > this.posY) {
+							//player esta abaixo
+						}else{
+							//player esta acima
+						}
 					}
 				}
 			}
