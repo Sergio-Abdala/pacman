@@ -244,6 +244,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			for (let j = 0; j < sprites.length; j++) {				
 				//colidir com ajuste
 				if (sprites[j].flag == 'ajuste') {
+
 					if (colide(this, sprites[j]) && this.ajuste != j) {
 						//console.log('ajuste '+ sprites[j].posX +', '+ sprites[j].posY);
 						this.movDown = this.movLeft = this.movRight = this.movUp = false;
@@ -279,7 +280,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 						}
 					}
 					if (this.ajuste == j && !this.movUp && !this.movDown && !this.movLeft && !this.movRight) {
-						//decidir direção
+						//decidir direção sorteando
 						//console.log('decidir direção '+ sprites[j].direcao +' contLoop: '+ GLOBAIS.contLoop);
 						let arr = sprites[j].direcao.split(",");
 						let sort = Math.random() * (arr.length-1);
@@ -309,6 +310,9 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 								console.log(this.flag +' sem movimento');
 								break;
 						}
+						/*/ ia dos fantom **********************************************/
+						//saber onde esta o player???
+						//avaliar direção a ser tomada com relação ao posicionamento posX, posY do player escolher entre opções de ajuste
 					}
 				}
 			}
@@ -330,9 +334,6 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					GLOBAIS.status = 'morrendo';
 				}
 			}
-			/*/ ia dos fantom **********************************************/
-			//saber onde esta o player???
-			//avaliar direção a ser tomada com relação ao posicionamento posX, posY do player escolher entre opções de ajuste
 		}
 		if (this.flag == 'zoio') {
 			if (this.posX > 87 && this.posX < 136 && this.posY > 97 && this.posY < 128 && !GLOBAIS.nerfar) {
