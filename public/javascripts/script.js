@@ -101,10 +101,14 @@ function loop(){
 
 	requestAnimationFrame(loop, "canvas");
 }
-function encontrar(flag){//descobre index do objeto que corresponda a flag com maior index do array
+function encontrar(flag, n){//descobre index do objeto que corresponda a flag com maior index do array
+	let num = n;
 	for (let i = sprites.length - 1; i >= 0; i--) {
 		if (sprites[i].flag == flag) {
-			return i;
+			if(!num){
+				return i;
+			}
+			num--;
 		}
 	}
     return false;
@@ -144,8 +148,6 @@ sprites[encontrar('player')].img.onload = function(){
 	GLOBAIS.pause = true;
     loop();
 }
-/*fruta(6,130,181);
-fruta(3,150,181);*/
 /********************************************************************************************/
 function grao(x,y){
 	sprites.push(new Sprite('images/pacmanTransparente.png', 'grao', 210, 218, 3, 3, x, y));
