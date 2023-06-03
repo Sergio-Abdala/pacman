@@ -78,13 +78,14 @@ function loop(){
     ctx.font = "15px Arial";//  TEXTO...
 	ctx.fillStyle = "#fff";
     ctx.fillText(GLOBAIS.txt, cnv.width/2+20, cnv.height/2);
+	//
 	if (GLOBAIS.feedback) {
 		ctx.font = "10px Arial";
 		ctx.fillText(GLOBAIS.feedback, cnv.width/2+20, cnv.height-10);
 	}
 	rank(GLOBAIS.qts);
 	GLOBAIS.contLoop++;
-	if (!contar('grao')) {//fim de jogo...
+	if (!contar('grao')) {//restart do jogo...
 		GLOBAIS.txt = 'VOCÊ VENCEU... ';
 		GLOBAIS.pause = true;
 		restart();
@@ -97,32 +98,17 @@ function loop(){
 		console.log('adv ok');
 		GLOBAIS.adv = false;
 		habeascorpus(2000);
-	}	
+	}
+	//ligar ia
+	if (contar('grao') < 290) {
+		if(contar('fantom') > 3){
+			console.log('ligar ia fantom '+ sprites[encontrar('fantom',3)].speed);
+			sprites[encontrar('fantom',3)].ia = true;
+		}		
+	}
 
 	requestAnimationFrame(loop, "canvas");
-}
-function encontrar(flag, n){//descobre index do objeto que corresponda a flag com maior index do array
-	let num = n;
-	for (let i = sprites.length - 1; i >= 0; i--) {
-		if (sprites[i].flag == flag) {
-			if(!num){
-				return i;
-			}
-			num--;
-		}
-	}
-    return false;
-}
-function contar(obj){//descobre quantos objetos com a mesma flag tem em jogo
-    let countObj = 0;
-	for (let i = sprites.length - 1; i >= 0; i--) {
-		if (sprites[i].flag == obj) {
-			countObj++
-		}
-	}
-    return countObj;
-}
-/*******************************************************************************************************/
+}/****************************************************************************************************/
 
 paredes(1);
 ajuste();
@@ -149,6 +135,27 @@ sprites[encontrar('player')].img.onload = function(){
     loop();
 }
 /********************************************************************************************/
+function encontrar(flag, n){//descobre index do objeto que corresponda a flag com maior index do array
+	let num = n;
+	for (let i = sprites.length - 1; i >= 0; i--) {
+		if (sprites[i].flag == flag) {
+			if(!num){
+				return i;
+			}
+			num--;
+		}
+	}
+    return false;
+}
+function contar(obj){//descobre quantos objetos com a mesma flag tem em jogo
+    let countObj = 0;
+	for (let i = sprites.length - 1; i >= 0; i--) {
+		if (sprites[i].flag == obj) {
+			countObj++
+		}
+	}
+    return countObj;
+}
 function grao(x,y){
 	sprites.push(new Sprite('images/pacmanTransparente.png', 'grao', 210, 218, 3, 3, x, y));
 }
