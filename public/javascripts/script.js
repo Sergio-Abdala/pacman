@@ -103,34 +103,26 @@ function loop(){
 	}
 	//ligar ia
 	if (contar('fantom') > 3) {
-		if (contar('grao') < 290) {
-			if(contar('fantom') > 3){
-				console.log('ligar ia fantom '+ sprites[encontrar('fantom',3)].speed);
-				sprites[encontrar('fantom',3)].ia = true;
-			}else{
-				sprites[encontrar('fantom',3)].ia = false;
-			}	
+		if (contar('grao') < 290) {			
+			console.log('ligar ia fantom '+ sprites[encontrar('fantom',3)].speed);
+			sprites[encontrar('fantom',3)].ia = true;				
+		}else{
+			sprites[encontrar('fantom',3)].ia = false;
 		}
 		if (contar('grao') < 190) {
-			if(contar('fantom') > 3){
-				sprites[encontrar('fantom',2)].ia = true;
-			}else{
-				sprites[encontrar('fantom',2)].ia = false;
-			}
+			sprites[encontrar('fantom',2)].ia = true;			
+		}else{
+			sprites[encontrar('fantom',2)].ia = false;
 		}
 		if (contar('grao') < 90) {
-			if(contar('fantom') > 3){
-				sprites[encontrar('fantom',1)].ia = true;
-			}else{
-				sprites[encontrar('fantom',1)].ia = false;
-			}
+			sprites[encontrar('fantom',1)].ia = true;
+		}else{
+			sprites[encontrar('fantom',1)].ia = false;
 		}
 		if (contar('grao') < 9) {
-			if(contar('fantom') > 3){
-				sprites[encontrar('fantom')].ia = true;
-			}else{
-				sprites[encontrar('fantom')].ia = false;
-			}
+			sprites[encontrar('fantom')].ia = true;
+		}else{
+			sprites[encontrar('fantom')].ia = false;
 		}
 	}
 	
