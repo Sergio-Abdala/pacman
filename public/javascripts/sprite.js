@@ -184,7 +184,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 			GLOBAIS.somar--;
 			GLOBAIS.txt = 'SCORE: '+ GLOBAIS.pontos;
 			//vida extra...
-			if (!(GLOBAIS.pontos%30000)) {
+			if (!(GLOBAIS.pontos%GLOBAIS.pontosNecessariosParaGanharVida)) {
 				addVida();
 				GLOBAIS.vida++;
 				GLOBAIS.feedback = 'vida extra '+GLOBAIS.vida;
@@ -377,6 +377,8 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 					GLOBAIS.status = 'morrendo';
 				}
 			}
+			//setas do feedback
+			seta(this);
 		}
 		if (this.flag == 'zoio') {
 			if (this.posX > 87 && this.posX < 136 && this.posY > 97 && this.posY < 128 && !GLOBAIS.nerfar) {

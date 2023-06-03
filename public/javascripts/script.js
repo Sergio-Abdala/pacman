@@ -17,6 +17,7 @@ var GLOBAIS = {
 	fruta: 0,
 	adv: true,
 	qts: 12,//quantas posições aparecem no rank...
+	pontosNecessariosParaGanharVida: 20000,
 	contLoop: 0
 }
 
@@ -100,12 +101,38 @@ function loop(){
 		habeascorpus(2000);
 	}
 	//ligar ia
-	if (contar('grao') < 290) {
-		if(contar('fantom') > 3){
-			console.log('ligar ia fantom '+ sprites[encontrar('fantom',3)].speed);
-			sprites[encontrar('fantom',3)].ia = true;
-		}		
+	if (contar('fantom') > 3) {
+		if (contar('grao') < 290) {
+			if(contar('fantom') > 3){
+				console.log('ligar ia fantom '+ sprites[encontrar('fantom',3)].speed);
+				sprites[encontrar('fantom',3)].ia = true;
+			}else{
+				sprites[encontrar('fantom',3)].ia = false;
+			}	
+		}
+		if (contar('grao') < 190) {
+			if(contar('fantom') > 3){
+				sprites[encontrar('fantom',2)].ia = true;
+			}else{
+				sprites[encontrar('fantom',2)].ia = false;
+			}
+		}
+		if (contar('grao') < 90) {
+			if(contar('fantom') > 3){
+				sprites[encontrar('fantom',1)].ia = true;
+			}else{
+				sprites[encontrar('fantom',1)].ia = false;
+			}
+		}
+		if (contar('grao') < 9) {
+			if(contar('fantom') > 3){
+				sprites[encontrar('fantom')].ia = true;
+			}else{
+				sprites[encontrar('fantom')].ia = false;
+			}
+		}
 	}
+	
 
 	requestAnimationFrame(loop, "canvas");
 }/****************************************************************************************************/
@@ -122,6 +149,10 @@ fantom(0,105,110);sprites[encontrar('fantom')].movRight=true;
 fantom(1,105,110);sprites[encontrar('fantom')].movRight=true;
 fantom(2,105,110);sprites[encontrar('fantom')].movLeft=true;
 fantom(3,105,110);sprites[encontrar('fantom')].movLeft=true;
+feedbackFantom(0);
+feedbackFantom(1);
+feedbackFantom(2);
+feedbackFantom(3);
 
 vida();
 
@@ -312,4 +343,30 @@ function restart(){
 	sprites[encontrar('player')].posY = 181;
 	voltar();
 	GLOBAIS.nerfar = false;
+}
+function feedbackFantom(tp){	
+	sprites.push(new Sprite('images/pacmanTransparente.png', 'feedback', 456, 64+16*tp, 16, 16, 230, 150+16*tp));
+	sprites.push(new Sprite('images/pacman.png', 'seta', 458+16*tp, 305, 16, 16, 250, 150+16*tp));
+	sprites.push(new Sprite('images/pacman.png', 'ia', 560, 283, 16, 16, 270, 150+16*tp));
+}
+function seta(ghost) {	
+	let set = ghost.cor -3;
+	(set < 0) ? set *= -1 : set;
+	if (ghost.movUp) {//cor é a posição do fantasma: 0,1,2,3		
+		sprites[encontrar('seta',set)].srcX = 458;
+	}
+	if (ghost.movRight) {//cor é a posição do fantasma: 0,1,2,3		
+		sprites[encontrar('seta',set)].srcX = 458+16;
+	}
+	if (ghost.movDown) {//cor é a posição do fantasma: 0,1,2,3		
+		sprites[encontrar('seta',set)].srcX = 458+16*2;
+	}
+	if (ghost.movLeft) {//cor é a posição do fantasma: 0,1,2,3	
+		sprites[encontrar('seta',set)].srcX = 458+16*3;
+	}
+	if (ghost.ia) {
+		sprites[encontrar('ia',set)].srcX = 577;
+	}else{
+		sprites[encontrar('ia',set)].srcX = 560;
+	}
 }
