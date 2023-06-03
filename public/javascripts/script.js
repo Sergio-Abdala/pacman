@@ -17,7 +17,7 @@ var GLOBAIS = {
 	fruta: 0,
 	adv: true,
 	qts: 12,//quantas posições aparecem no rank...
-	pontosNecessariosParaGanharVida: 20000,
+	pontosNecessariosParaGanharVida: 15000,
 	contLoop: 0
 }
 
@@ -93,8 +93,9 @@ function loop(){
 		addVida();
 		GLOBAIS.vida++;
 		GLOBAIS.feedback = 'ganhou vida extra... vidas = '+GLOBAIS.vida;
+		GLOBAIS.pontosNecessariosParaGanharVida += 5000;
 	}
-	//aciona habeas corpus apenas uma vez....
+	//aciona habeas corpus apenas uma vez ao iniciar pontuação....
 	if(GLOBAIS.pontos && GLOBAIS.adv){
 		console.log('adv ok');
 		GLOBAIS.adv = false;
