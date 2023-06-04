@@ -124,6 +124,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 		if (this.flag == 'grao' && colide(this, sprites[encontrar('player')])) {
 			this.flag = 'remover';
 			GLOBAIS.somar++;
+			PlaySom('comer');
 		}
 		//pontos
 		if (this.flag == 'pontos') {

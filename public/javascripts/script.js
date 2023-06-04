@@ -363,3 +363,18 @@ function seta(ghost) {
 		sprites[encontrar('ia',set)].srcX = 560;
 	}
 }
+function PlaySom(tipo) {
+	let som = document.createElement('audio');
+	switch (tipo) {
+		case 'comer':
+			som.src = 'sons/comer.wav';
+			break;
+	
+		default:
+			break;
+	}
+	
+	som.addEventListener('canplaythrough',()=>{
+		som.play();
+	},false);
+}
