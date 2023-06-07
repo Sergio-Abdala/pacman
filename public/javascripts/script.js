@@ -22,7 +22,7 @@ var GLOBAIS = {
 }
 
 //************************************************************************************************ */
-function loop(){ 	
+function loop(){ 		
     // limpar tela
 	ctx.clearRect(0,0,cnv.width,cnv.height);
 	for (let i = 0 ; i < sprites.length; i++) {//percorre array de sprites
@@ -41,11 +41,14 @@ function loop(){
 	if (GLOBAIS.status) {
 		switch (GLOBAIS.status) {
 			case 'morrendo':
+				if (!sprites[encontrar('player')].frame) {
+					playSom('morrer');
+				}
 				//GLOBAIS.feedback = 'pacman esta morrendo...';
 				if (sprites[encontrar('player')].srcY < 220) {
 					sprites[encontrar('player')].srcY = 247;
 				}
-				if (!(GLOBAIS.contLoop%15)) {
+				if (!(GLOBAIS.contLoop%8)) {
 					//animação do pacman morrendo mudar frame depois voltar status a null
 					sprites[encontrar('player')].srcX = 458 + 17*sprites[encontrar('player')].frame;
 					console.log('frame '+ sprites[encontrar('player')].frame);
@@ -61,7 +64,9 @@ function loop(){
 							GLOBAIS.gameOver=false;
 							GLOBAIS.vida--;
 							sprites[encontrar('vida')].flag = 'remover';
+							playSom('start');
 						}else{
+							playSom('endGame');
 							GLOBAIS.txt = 'FIM DE JOGO '+ GLOBAIS.pontos;
 							endGame();
 						}
@@ -87,24 +92,18 @@ function loop(){
 	rank(GLOBAIS.qts);
 	GLOBAIS.contLoop++;
 	if (!contar('grao')) {//restart do jogo...
-		GLOBAIS.txt = 'VOCÊ VENCEU... ';
-		GLOBAIS.pause = true;
 		restart();
-		addVida();
-		GLOBAIS.vida++;
-		GLOBAIS.feedback = 'ganhou vida extra... vidas = '+GLOBAIS.vida;
-		GLOBAIS.pontosNecessariosParaGanharVida += 5000;
 	}
 	//aciona habeas corpus apenas uma vez ao iniciar pontuação....
 	if(GLOBAIS.pontos && GLOBAIS.adv){
 		console.log('adv ok');
 		GLOBAIS.adv = false;
 		habeascorpus(2000);
+		playSom('start');
 	}
 	//ligar ia
 	if (contar('fantom') > 3) {
-		if (contar('grao') < 290) {			
-			console.log('ligar ia fantom '+ sprites[encontrar('fantom',3)].speed);
+		if (contar('grao') < 290) {
 			sprites[encontrar('fantom',3)].ia = true;				
 		}else{
 			sprites[encontrar('fantom',3)].ia = false;
@@ -125,8 +124,6 @@ function loop(){
 			sprites[encontrar('fantom')].ia = false;
 		}
 	}
-	
-
 	requestAnimationFrame(loop, "canvas");
 }/****************************************************************************************************/
 
@@ -148,6 +145,7 @@ feedbackFantom(2);
 feedbackFantom(3);
 
 vida();
+timeFruta();
 
 cnv.width = 450;
 cnv.height = 248;
@@ -156,7 +154,8 @@ sprites.push(new Sprite('images/pacmanTransparente.png', 'player', 488, 144, 14,
 
 sprites[encontrar('player')].img.onload = function(){
 	GLOBAIS.pause = true;
-    loop();
+	console.log('start');	
+    loop();	
 }
 /********************************************************************************************/
 function encontrar(flag, n){//descobre index do objeto que corresponda a flag com maior index do array
@@ -214,11 +213,7 @@ function habeascorpus(t) {
 		t = 1000;
 	}
 	setTimeout(()=>{
-		libertar(); console.log('liberdade!!! ==> '+ t);
-		if (!contar('fruta')) {
-			fruta(GLOBAIS.fruta, 104,131);
-			(GLOBAIS.fruta < 7) ? GLOBAIS.fruta++ : GLOBAIS.fruta = 0;
-		}		
+		libertar(); //console.log('liberdade!!! ==> '+ t);				
 		t += 4000;
 		habeascorpus(t);
 	}, t);
@@ -257,8 +252,7 @@ function getCookie(cname) {
 function deleteCokie(cname){
 	document.cookie = cname+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
-function endGame() {
-	//
+function endGame() {	
 	let cont = 0;
 	let ptemp = false;
 	let ntemp = false;
@@ -336,6 +330,13 @@ function restart(){
 	sprites[encontrar('player')].posY = 181;
 	voltar();
 	GLOBAIS.nerfar = false;
+	GLOBAIS.txt = 'VOCÊ VENCEU... ';
+	GLOBAIS.pause = true;
+	addVida();
+	GLOBAIS.vida++;
+	GLOBAIS.feedback = 'ganhou vida extra... vidas = '+GLOBAIS.vida;
+	GLOBAIS.pontosNecessariosParaGanharVida += 5000;
+	playSom('start');
 }
 function feedbackFantom(tp){	
 	sprites.push(new Sprite('images/pacmanTransparente.png', 'feedback', 456, 64+16*tp, 16, 16, 230, 150+16*tp));
@@ -363,13 +364,31 @@ function seta(ghost) {
 		sprites[encontrar('ia',set)].srcX = 560;
 	}
 }
-function PlaySom(tipo) {
+function playSom(tipo) {
 	let som = document.createElement('audio');
 	switch (tipo) {
 		case 'comer':
 			som.src = 'sons/comer.wav';
 			break;
-	
+		case 'start':
+			som.src = 'sons/start.wav';
+			break;
+		case 'morrer':
+			som.src = 'sons/morrer.wav';
+			break;
+		case 'comerFantasma':
+			som.src = 'sons/comerFantasma.wav';
+			break;
+		case 'power':
+			som.src = 'sons/powerpellet and fruit.wav';
+			break;
+		case 'fruta':			
+			som.src = 'sons/blueghost.wav';
+			break;
+		case 'endGame':
+			som.src = 'sons/fimDeJogo.mp3';
+			break;
+
 		default:
 			break;
 	}
@@ -377,4 +396,13 @@ function PlaySom(tipo) {
 	som.addEventListener('canplaythrough',()=>{
 		som.play();
 	},false);
+}
+function timeFruta(tempo) {
+	tempo ? tempo : tempo=5000;
+	setTimeout(() => {
+		if (!contar('fruta')) {
+			fruta(GLOBAIS.fruta, 104,131);
+			(GLOBAIS.fruta < 7) ? GLOBAIS.fruta++ : GLOBAIS.fruta = 0;
+		}
+	}, tempo);
 }

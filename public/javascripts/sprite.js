@@ -19,9 +19,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 		this.frame = 0;
     //metodos..............................
     this.render = function(){//renderizar em tela...
-        //if (this.exibir) {
-            ctx.drawImage(this.img, this.srcX, this.srcY, this.lar, this.alt, this.posX, this.posY, this.lar*this.escala, this.alt*this.escala);
-        //}		
+        ctx.drawImage(this.img, this.srcX, this.srcY, this.lar, this.alt, this.posX, this.posY, this.lar*this.escala, this.alt*this.escala);
     }
     this.exe = function(){
         //movimento 
@@ -117,14 +115,18 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 		}
 		//fruta
 		if (this.flag == 'fruta' && colide(this, sprites[encontrar('player')])) {
+			playSom('fruta');
 			this.srcY += this.alt;
 			this.flag = 'pontos';
+			//
+			timeFruta();
+			
 		}
 		//grão
 		if (this.flag == 'grao' && colide(this, sprites[encontrar('player')])) {
 			this.flag = 'remover';
 			GLOBAIS.somar++;
-			PlaySom('comer');
+			playSom('comer');
 		}
 		//pontos
 		if (this.flag == 'pontos') {
@@ -364,6 +366,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				console.log('colisão '+ this.flag +' player');
 				if (this.srcX > 580) {
 					console.log('pacman comeu');
+					playSom('comerFantasma');
 					// inserir pontos do fantasma comido
 					sprites.push(new Sprite('images/pacmanTransparente.png', 'pontos', 456+16*contar('zoio'), 64+16*4, 16, 16, this.posX, this.posY));
 					//fantasma vira zoio
@@ -469,6 +472,7 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				this.frame++;
 			}
 			if (colide(this, sprites[encontrar('player')])) {//colisão com player
+				playSom('power');
 				this.flag = 'remover';
 				GLOBAIS.nerfar = true;
 				setTimeout(()=>{
