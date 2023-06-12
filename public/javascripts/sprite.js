@@ -491,24 +491,32 @@ function Sprite(imgSrc, flag, srcX, srcY, lar, alt, posX, posY){
 				this.movLeft = false;
 				this.movRight = true;
 				this.movUp = false;
+				this.posX = 105;
+				this.posY = 110;
 			}
 			if (this.posX > cnv.width/2 + this.lar) {
 				this.movDown = false;
 				this.movLeft = true;
 				this.movRight = false;
 				this.movUp = false;
+				this.posX = 105;
+				this.posY = 110;
 			}
 			if (this.posY < this.alt*-1) {
 				this.movDown = true;
 				this.movLeft = false;
 				this.movRight = false;
 				this.movUp = false;
+				this.posX = 105;
+				this.posY = 110;
 			}
 			if (this.posY > cnv.height + this.alt) {
 				this.movDown = false;
 				this.movLeft = false;
 				this.movRight = false;
 				this.movUp = true;
+				this.posX = 105;
+				this.posY = 110;
 			}
 		}
     }
